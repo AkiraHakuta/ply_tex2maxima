@@ -211,6 +211,10 @@ tex2maxima2tex()の返り値はファイルresult.texに保存します。
 更に、arrayjob を使って、配列のように要素を呼び出し、数式処理した結果を貼り付けます。  
 The ‘arrayjob’ package Management of arrays in LaTEX.  
 
+maxima の batch file temp.bat  
+数式処理した最終的な LateX のコードの文字列 result.tex  
+は共に pythontex が生成するフォルダの中に保存されます。  
+
 分母の有理化については、変形できず、途中で断念。  
 不等式については、解にルートがついてしまうと解けない。  
 
