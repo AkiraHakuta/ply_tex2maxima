@@ -252,7 +252,7 @@ batch file に処理するコマンドをまとめ、1回で処理している�
 
 ### モジュールのimport    
 他のモジュールと同様に、    
-from tex2maxima_parser import tex2sym, mylatexstyle   
+from tex2maxima2_parser import tex2maxima2tex, mylatexstyle   
 だけで import できるようにするには、    
 まず、ダウンロードしたフォルダー ply_tex2maxima-master を、Python35\Lib\site-packages にコピーまたは移動し,   
 Python35\Lib\site-packages に、例えば、  
