@@ -211,8 +211,8 @@ tex2maxima2tex()の返り値はファイルresult.texに保存します。
 更に、arrayjob を使って、配列のように要素を呼び出し、数式処理した結果を貼り付けます。  
 The ‘arrayjob’ package Management of arrays in LaTEX.  
 
-maxima の batch file temp.bat  
-数式処理した最終的な LateX のコードの文字列 result.tex  
+maxima の batch file temp.bat  
+数式処理した最終的な LateX のコードの文字列 result.tex  
 は共に pythontex が生成するフォルダの中に保存されます。  
 
 分母の有理化については、変形できず、途中で断念。  
@@ -236,13 +236,13 @@ timeit.exe で pythontex.exe exmaple?.tex の開始から終了までの経過�
 PC環境 CPU: Corei7-5600U   RAM: 8.00GB
 
 ```
-				number of expression	 		Elapsed Time
-example3.tex (Maxima)			39				0:00:04.820
-example4.tex (Maxima)			 8				0:00:04.669
-example5.tex (Maxima)			 4				0:00:04.777
+				number of expression	 	Elapsed Time
+example3.tex (Maxima)			39			0:00:04.820
+example4.tex (Maxima)			 8			0:00:04.669
+example5.tex (Maxima)			 4			0:00:04.777
 
-example1.tex ( SymPy)			39				0:00:08.902
-example2.tex ( SymPy)			 8				0:00:03.324
+example1.tex ( SymPy)			39			0:00:08.902
+example2.tex ( SymPy)			 8			0:00:03.324
 ```
 maxima は処理する数式の数が増えても、経過時間にはほとんど差がありません。  
 batch file に処理するコマンドをまとめ、1回で処理しているので、当然の結果と思われます。  
