@@ -36,7 +36,7 @@ ply_tex2maxima LaTeX expression style
 \sin{x}
 \cos^{2}{\theta}
 \log{2}
-\log{2}{8}
+\log_{2}{8}
 \frac{d}{dx}{(x^3+x^2+x+1)}
 \int{(x^3+x^2+x+1) dx}
 \int_{1}^{3}{(x-1)(x-3)^2 dx}
