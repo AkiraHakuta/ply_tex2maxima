@@ -101,7 +101,7 @@ bin\maxima.bat を使います。
 
 ### 使い方  
 tex2maxima_parser.py  
-maxima_bat='C:\\maxima-5.39.0\\bin\\maxima.bat'  
+maxima_bat='C:\\\\maxima-5.39.0\\\\bin\\\\maxima.bat'  
 のように、ディリクトリを含めて、maxima.batを指定。  
 python.exe tex2sym_parser.py  
 を実行。出力を見ると  
@@ -232,7 +232,7 @@ timeit.exe で pythontex.exe exmaple?.tex の開始から終了までの経過�
 PC環境 CPU: Corei7-5600U   RAM: 8.00GB
 
 ```
-					 	number of expression	 Elapsed Time
+				number of expression	 		Elapsed Time
 example3.tex (Maxima)			39				0:00:04.820
 example4.tex (Maxima)			 8				0:00:04.669
 example5.tex (Maxima)			 4				0:00:04.777
