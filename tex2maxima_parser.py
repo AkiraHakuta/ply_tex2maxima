@@ -296,13 +296,14 @@ def run_maxima(batch_dir):
         print('set maxima_bat')
         return 1
     maxima_ret = str(maxima_ret)
-    #print(maxima_ret)
+    #print(maxima_ret)    
     replace_list= [[' ',''],['\\\\,','\\,'],['\\n',''],['\\\\left(','('],['\\\\right)',')'],['\\\\left[','['],['\\\\right]',']'],['\\r',''],['\\\\frac','\\frac']]    
     for el in replace_list:
         maxima_ret =maxima_ret.replace(el[0], el[1])
-    replace_list=[[r'\\sin','\\sin'],[r'\\cos','\\cos'],[r'\\tan','\\tan'],[r'\\sqrt','\\sqrt'],[r'\\pi','\\pi '],
-        [r'\\it\\%alpha','\\alpha'],[r'\\it\\%beta','\\beta'],[r'\\it\\%Gamma','\\gamma'],[r'\\it\\%theta','\\theta'],[r'\\it\\%omega','\\omega'],
-        ['[','\\left['],[']','\\right]'],[r'\\lor','~or~']]
+    #print(maxima_ret)    
+    replace_list=[['\\\\sin','\\sin'],['\\\\cos','\\cos'],['\\\\tan','\\tan'],['\\\\sqrt','\\sqrt'],['\\\\pi','\\pi '],
+        ['\\\\it\\\\%alpha','\\alpha'],['\\\\it\\\\%beta','\\beta'],['\\\\it\\\\%Gamma','\\gamma'],['\\\\it\\\\%theta','\\theta'],['\\\\it\\\\%omega','\\omega'],
+        ['[','\\left['],[']','\\right]'],['\\\\lor','~or~']]
     for el in replace_list:
         maxima_ret = maxima_ret.replace(el[0],el[1])
     maxima_ret_list = re.findall(r'begin.*begin\(%i\d+\)(.*)\$\$\(%o\d+\)false\(%i\d+\)end.*end', maxima_ret)
@@ -410,6 +411,7 @@ if __name__ == '__main__':
     [r'x^2-3x-4 \leqq 0',MULT_CDOT,'fourier_elim','x'],
     [r'\sqrt{8-2\sqrt{15}}',MULT_NSP, 'sqrtdenest'],
     ]
+
     test = 1
     tex2maxima2tex(texexpr_comand_list, '', test)
     #print(tex2maxima2tex(texexpr_comand_list, ''))
