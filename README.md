@@ -29,7 +29,7 @@ maxima_bat='C:\\maxima-5.39.0\\bin\\maxima.bat'
 python.exe tex2maxima_parser.py
    --> Generating LALR tables
    
-variable : a,b,...,z,A,....,Z,\alpha,\beta,\gamma,\theta,\oomega
+variable : a,b,...,z,A,....,Z,\alpha,\beta,\gamma,\theta,\omega
 constant : pi --> \ppi, imaginary unit --> \ii, napier constant --> \ee
 
 ply_tex2maxima LaTeX expression style
@@ -190,17 +190,23 @@ run_maxima(batch_dir) の返り値(数式処理した結果のlist)に適当な�
 
 
 ### example3.tex  
-pythontex について    
-\begin{pycode}    
-code    
-\end{pycode}    
-codeの部分にPythonのコードを書き込みます。    
+pythontex について  
 
-\pyc{code}はcodeを実行するコマンド。複数のコマンドを実行するのであれば、; を間に入れる。    
+\begin{pycode}  
+code  
+\end{pycode}  
+
+codeの部分にPythonのコードを書き込みます。      
+
+\pyc{code}  
+
+はcodeを実行するコマンド。複数のコマンドを実行するのであれば、; を間に入れる。  
 pyはpython、cはcommandの意味。  
 
-\py{value}は、valueを可能ならば文字列に変えて出力するコマンドのようです。     
-\py{'text'}と\pyc{print('text')} は共に、文字列 text を出力します。    
+\py{value}  
+
+は、valueを可能ならば文字列に変えて出力するコマンドのようです。    
+\py{'text'}と\pyc{print('text')} は共に、文字列 text を出力します。     
 
 maximaで処理した結果を貼り付ければよいのですが、  
 数式毎にmaximaを立ち上げると、時間が掛かりすぎて実用的ではありません。  
