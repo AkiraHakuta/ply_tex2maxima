@@ -301,8 +301,8 @@ def run_maxima(batch_dir):
     for el in replace_list:
         maxima_ret =maxima_ret.replace(el[0], el[1])
     #print(maxima_ret)    
-    replace_list=[['\\\\sin','\\sin'],['\\\\cos','\\cos'],['\\\\tan','\\tan'],['\\\\sqrt','\\sqrt'],['\\\\pi','\\pi '],
-        ['\\\\it\\\\%alpha','\\alpha'],['\\\\it\\\\%beta','\\beta'],['\\\\it\\\\%Gamma','\\gamma'],['\\\\it\\\\%theta','\\theta'],['\\\\it\\\\%omega','\\omega'],
+    replace_list=[['\\\\sin','\\sin '],['\\\\cos','\\cos '],['\\\\tan','\\tan '],['\\\\log','\\log '],['\\\\sqrt','\\sqrt'],['\\\\pi','\\pi '],
+        ['\\\\it\\\\%alpha','\\alpha '],['\\\\it\\\\%beta','\\beta '],['\\\\it\\\\%Gamma','\\gamma '],['\\\\it\\\\%theta','\\theta '],['\\\\it\\\\%omega','\\omega '],
         ['[','\\left['],[']','\\right]'],['\\\\lor','~or~']]
     for el in replace_list:
         maxima_ret = maxima_ret.replace(el[0],el[1])
