@@ -16,7 +16,7 @@ MULT_NSP=1
 MULT_CDOT=2
 MULT_TIMES=3
 
-# variable : a,b,...,z,A,...,Z,\alpha,\beta,\gamma,\theta,\oomega
+# variable : a,b,...,z,A,...,Z,\alpha,\beta,\gamma,\theta,\omega
 # constant : pi --> \ppi, imaginary unit --> \ii, napier constant --> \ee
 
 precedence = (
@@ -79,7 +79,7 @@ def p_expr_brace(p):
     'expr : LBRACE expr RBRACE'
     p[0] = '({})'.format(p[2])
 
-# expr :  (expr)
+# expr : (expr)
 def p_expr_paren(p):
     'expr : LPAREN expr RPAREN'
     p[0] = '({})'.format(p[2])
@@ -89,7 +89,7 @@ def p_expr_symbol(p):
     'expr : ALPHABET'
     p[0] = p[1]
     
-# expr : alpha|bbeta|ggamma|delta|epsilon|theta|sigma|omega
+# expr : %alpha|%beta|%Gamma|%theta|%omega
 def p_expr_greek_ch(p):
     'expr : GREEK_CH'
     p[0] = p[1]
