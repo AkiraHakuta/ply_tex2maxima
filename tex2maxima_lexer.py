@@ -1,4 +1,4 @@
-# tex2maxima_lexer.py   Author: Akira Hakuta, Date: 2017/05/23
+# tex2maxima_lexer.py   Author: Akira Hakuta, Date: 2017/05/27
 # python.exe tex2maxima_lexer.py
 
 from ply import lex
