@@ -2,7 +2,7 @@
 
 ply_tex2maxima parses LaTeX math expressions and converts it into the equivalent Maxima form by using PLY.  
 
-Author:Akira Hakuta,  Date: 2017/05/23    
+Author:Akira Hakuta,  Date: 2017/05/27     
 
 ## Installation (windows)
 
