@@ -57,19 +57,22 @@ pdflatex.exe -synctex=1 -interaction=nonstopmode example3.tex
 ```
 [latex_expr, MULT_???, maxima_command] --> tex(maxima_command(maxima_expr))) --> latex_expr
 
-['2^3', 1, 'ratsimp'] --> tex(ratsimp(2^3)) --> 8
-['1.234', 1, 'ratsimp'] --> tex(ratsimp(ratsimp(1.234)))rat:replaced1.234by617/500=1.234 --> \frac{617}{500}
+['2^3', 1, 'ratsimp'] -->  tex(ratsimp(2^3)) --> 8
+['1.234', 1, 'ratsimp'] --> tex(ratsimp(ratsimp(1.234)))rat: replaced 1.234 by 617/500 = 1.234 --> \frac{617}{500}
 ['\\frac{2}{6}', 1, 'ratsimp'] --> tex(ratsimp(2*6^-1)) --> \frac{1}{3}
-['(x+2y)^2', 1, 'expand'] --> tex(expand((x+2*y)^2)) --> 4y^2+4xy+x^2
-['2x-4xy-2y+1', 2, 'factor'] --> tex(factor(2*x-4*x*y+(-2)*y+1)) --> -(2\cdot x+1)\cdot (2\cdot y-1)
+['(x+2y)^2', 1, 'expand'] --> tex(expand((x+2*y)^2)) --> 4 y^2+4 x y+x^2
+['2x-4xy-2y+1', 2, 'factor'] --> tex(factor(2*x-4*x*y+(-2)*y+1)) --> -\left(2\cdot x+1\right)\cdot \left(2\cdot y-1\right)
+['%alpha^2-9%beta^2', 3, 'factor'] --> tex(factor(%alpha^2-9*%beta^2)) --> -\left(3\times {\beta}-{\alpha}\right)\times \left(3\times {\beta}+{\alpha}\right)
 ['\\ee^{\\ppi \\ii}', 1, 'ratsimp'] --> tex(ratsimp(%e^(%pi*%i))) --> -1
 ['\\sin {\\frac{5}{4}\\ppi}', 1, 'ratsimp'] --> tex(ratsimp(sin(5*4^-1*%pi))) --> -\frac{1}{\sqrt{2}}
 ['\\log{\\ee^3}', 1, 'ratsimp'] --> tex(ratsimp(log(%e^3))) --> 3
 ['\\log_{2}{8}', 1, 'radcan'] --> tex(radcan(log(8)*log(2)^-1)) --> 3
 ['\\left|\\sqrt{7} -3 \\right|', 1, 'ratsimp'] --> tex(ratsimp(abs(sqrt(7)-3))) --> 3-\sqrt{7}
 ['\\frac{d}{dx}{\\log{x}}', 1, 'ratsimp'] --> tex(ratsimp(diff(log(x),x,1))) --> \frac{1}{x}
+['\\int{\\cos^{2}{\\theta} d\\theta}', 1, 'ratsimp'] --> tex(ratsimp(integrate(cos(%theta)^2,%theta))) --> \frac{\sin \left(2 {\theta}\right)+2 {\theta}}{4}
 ['\\int_{1}^{2}{t^2 dt}', 1, 'ratsimp'] --> tex(ratsimp(integrate(t^2,t,1,2))) --> \frac{7}{3}
-['a_{n+1}=3a_{n}+8', 2, 'solve_rec_2', '2'] --> tex(ratsimp(solve_rec(a(n+1)=3*a(n)+8,a(n),a(1)=2))) --> a(n)=2\cdot 3^{n}-4
+['a_{n+1}=3a_{n}+8', 2, 'solve_rec_2', '2'] --> tex(ratsimp(solve_rec(a(n+1) = 3*a(n)+8,a(n),a(1) = 2))) --> a\left(n\right)=2\cdot 3^{n}-4
+['2x+y=13,x-2y=-6', 1, 'solve', 'x,y'] --> tex(solve([2*x+y = 13,x-2*y = (-1)*6],[x,y])) --> \left[ \left[ x=4 , y=5 \right]  \right] 
 ['\\sqrt{8-2\\sqrt{15}}', 1, 'sqrtdenest'] --> tex(sqrtdenest(sqrt(8-2*sqrt(15)))) --> \sqrt{5}-\sqrt{3}
 ```
 
