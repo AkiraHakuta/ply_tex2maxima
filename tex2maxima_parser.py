@@ -1,4 +1,4 @@
-# tex2maxima_parser.py   Author: Akira Hakuta, Date: 2017/05/23
+# tex2maxima_parser.py   Author: Akira Hakuta, Date: 2017/05/27
 # python.exe tex2maxima_parser.py
 
 from ply import yacc
@@ -296,24 +296,22 @@ def run_maxima(batch_dir):
         print('set maxima_bat')
         return 1
     maxima_ret = str(maxima_ret)
-    #print(maxima_ret)    
-    replace_list= [[' ',''],['\\\\,','\\,'],['\\n',''],['\\\\left(','('],['\\\\right)',')'],['\\\\left[','['],['\\\\right]',']'],['\\r',''],['\\\\frac','\\frac']]    
+    maxima_ret = re.sub(r'\s+false\\n\(%i\d+\)\s','',maxima_ret)
+    maxima_ret = re.sub(r'\\n\s*','',maxima_ret)
+    #print(maxima_ret) 
+    replace_list= [['\\\\','\\'],['\\it \\%alpha','\\alpha'],['\\it \\%beta','\\beta'],['\\it \\%Gamma','\\gamma'],['\\it \\%theta','\\theta'],['\\it \\%omega','\\omega']
+        ,['\\lor','~or~']]
     for el in replace_list:
-        maxima_ret =maxima_ret.replace(el[0], el[1])
-    #print(maxima_ret)    
-    replace_list=[['\\\\sin','\\sin '],['\\\\cos','\\cos '],['\\\\tan','\\tan '],['\\\\log','\\log '],['\\\\sqrt','\\sqrt'],['\\\\pi','\\pi '],
-        ['\\\\it\\\\%alpha','\\alpha '],['\\\\it\\\\%beta','\\beta '],['\\\\it\\\\%Gamma','\\gamma '],['\\\\it\\\\%theta','\\theta '],['\\\\it\\\\%omega','\\omega '],
-        ['[','\\left['],[']','\\right]'],['\\\\lor','~or~']]
-    for el in replace_list:
-        maxima_ret = maxima_ret.replace(el[0],el[1])
-    maxima_ret_list = re.findall(r'begin.*begin\(%i\d+\)(.*)\$\$\(%o\d+\)false\(%i\d+\)end.*end', maxima_ret)
+        maxima_ret = maxima_ret.replace(el[0],el[1]) 
+    maxima_ret_list = re.findall(r'.*begin\(%i\d+\)(.*)\$\$\(%o\d+\)end.*', maxima_ret)
     #print(maxima_ret_list)
-    maxima_ret_list = re.split(r'\$\$\(%o\d+\)false\(%i\d+\)', maxima_ret_list[0])
+    maxima_ret_list = re.split(r'\$\$\(%o\d+\)', maxima_ret_list[0])
     #print(maxima_ret_list)
     latex_result_list = []
     for el in maxima_ret_list:
         rl = re.split(r'\$\$',el)
         latex_result_list.append(rl)
+    #print(latex_result_list)
     return latex_result_list
     
     
@@ -357,7 +355,7 @@ def tex2maxima2tex(texexpr_command_list, batch_dir, test=0):
             maxima_command += 'tex(logcontract({:s}))'.format(maximaexpr)+';\r'
         elif command == 'trigsimp':
             maxima_command += 'tex(trigsimp({:s}))'.format(maximaexpr)+';\r'
-            
+                           
     maxima_command += 'end;\r'
     maxima_command += '\r'
     try:
@@ -374,7 +372,7 @@ def tex2maxima2tex(texexpr_command_list, batch_dir, test=0):
         if mult_code == MULT_CDOT:
             latex_result_list[i][1]=latex_result_list[i][1].replace(r'\,',r'\cdot ')
         elif mult_code == MULT_NSP:
-            latex_result_list[i][1]=latex_result_list[i][1].replace(r'\,','')
+            latex_result_list[i][1]=latex_result_list[i][1].replace(r'\,',' ')
         elif mult_code == MULT_TIMES:
             latex_result_list[i][1]=latex_result_list[i][1].replace(r'\,',r'\times ')            
     #print(latex_result_list)
@@ -410,6 +408,7 @@ if __name__ == '__main__':
     [r'2x+y=13,x-2y=-6',MULT_NSP,'solve','x,y'],
     [r'x^2-3x-4 \leqq 0',MULT_CDOT,'fourier_elim','x'],
     [r'\sqrt{8-2\sqrt{15}}',MULT_NSP, 'sqrtdenest'],
+    [r'\sqrt{x^2}',MULT_NSP, 'ratsimp'],
     ]
 
     test = 1
