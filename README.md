@@ -14,7 +14,7 @@ TeX Live:  <http://www.tug.org/texlive/acquire-netinstall.html>
 
 Python3: <https://www.python.org/downloads/windows/>  
 PLY : <http://www.dabeaz.com/ply/>  
-Maxima : <http://maxima.sourceforge.net>  
+Maxima : <http://maxima.sourceforge.net> (5.39.0-Windows)
 ```
 pip install ply
 ```
