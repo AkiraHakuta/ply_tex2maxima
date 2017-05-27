@@ -56,6 +56,10 @@ pdflatex.exe -synctex=1 -interaction=nonstopmode example3.tex
 
 ```
 [latex_expr, MULT_???, maxima_command] --> tex(maxima_command(maxima_expr))) --> latex_expr
+MULT_SP=0
+MULT_NSP=1
+MULT_CDOT=2
+MULT_TIMES=3
 
 ['2^3', 1, 'ratsimp'] -->  tex(ratsimp(2^3)) --> 8
 ['1.234', 1, 'ratsimp'] --> tex(ratsimp(ratsimp(1.234)))rat: replaced 1.234 by 617/500 = 1.234 --> \frac{617}{500}
