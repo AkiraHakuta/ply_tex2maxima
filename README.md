@@ -190,7 +190,7 @@ subprocess.check_output(maxima_cmd)で出力を表示、
 texexpr_command_listにあるlatexの数式をtex2maxima(texexpr)でmaximaの数式に変換、  
 maximaで数式処理するbatch file(temp.bat)を作成します。  
 run_maxima(batch_dir) の返り値(数式処理した結果のlist)に適当な置き換えをし、  
-各要素を&で繋げた文字列として返します。  
+各要素を'&'で区切った文字列の形で返します。  
 
 
 ### example3.tex  
@@ -217,8 +217,8 @@ maximaで処理した結果を貼り付ければよいのですが、
 まとめて、1回で処理します。  
 
 tex2maxima2tex()の返り値はファイルresult.texに保存します。  
-\input{../result.tex}でそれをtexのコードの間に貼り付けます。  
-更に、arrayjob を使って、配列のように要素を呼び出し、数式処理した結果を貼り付けます。  
+\input{../result.tex}でそれをLaTeXのコードの間に差し込み、  
+更に、arrayjob を使って、配列のように要素を呼び出し、数式処理した結果を貼り付けます。  	
 The ‘arrayjob’ package Management of arrays in LaTEX.  
 
 maxima の batch file temp.bat  
