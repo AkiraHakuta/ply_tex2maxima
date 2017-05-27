@@ -100,7 +100,7 @@ pip install ply
 当方は Python 3.4.4 で動作を確認しています。  
 
 #### Maxima  
-<http://maxima.sourceforge.net> (5.39.0-Windows)
+<http://maxima.sourceforge.net> (5.39.0-Windows)  
 bin\maxima.bat を使います。
 
 ### 使い方  
