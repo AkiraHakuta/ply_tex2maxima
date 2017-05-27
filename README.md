@@ -187,8 +187,8 @@ subprocess.check_output(maxima_cmd)で出力を表示、
 そこから数式処理した結果を抜き取り、listとして返します。 
 
 #### tex2maxima2tex(texexpr_command_list, batch_dir, test=0)  
-texexpr_command_listにあるlatexの数式をtex2maxima(texexpr)でmaximaの数式に変換、  
-maximaで数式処理するbatch file(temp.bat)を作成します。  
+texexpr_command_listにあるlatexの数式をtex2maxima(texexpr)でMaximaの数式に変換、  
+Maximaで数式処理するbatch file(temp.bat)を作成します。  
 run_maxima(batch_dir) の返り値(数式処理した結果のlist)に適当な置き換えをし、  
 各要素を'&'で区切った文字列の形で返します。  
 
@@ -205,7 +205,7 @@ codeの部分にPythonのコードを書き込みます。
 \pyc{code}  
 
 はcodeを実行するコマンド。複数のコマンドを実行するのであれば、; を間に入れる。  
-pyはpython、cはcommandの意味。  
+pyはPython、cはcommandの意味。  
 
 \py{value}  
 
@@ -236,7 +236,7 @@ example2.tex のmaxima 版です。
 ### example5.tex 
 具体的な使用例(漸化式)    
 4問ともSymPy では解けない(後半２問は誤答を出力)  
-maxima は正解を出力します。  
+Maxima は正解を出力します。  
 
 
 
@@ -254,7 +254,7 @@ example5.tex (Maxima)			 4			0:00:04.777
 example1.tex ( SymPy)			39			0:00:08.902
 example2.tex ( SymPy)			 8			0:00:03.324
 ```
-maxima は処理する数式の数が増えても、経過時間にはほとんど差がありません。  
+Maxima は処理する数式の数が増えても、経過時間にはほとんど差がありません。  
 batch file に処理するコマンドをまとめ、1回で処理しているので、当然の結果と思われます。  
 
 
