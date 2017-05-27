@@ -96,7 +96,7 @@ Python3 の好きなバージョン、32bit、64bitを選び、インスツー�
 コマンドプロンプトで   
 pip install ply  
 と打ち込む。Successfully installed ...　と表示されればOK!    
-\Python34\Lib\site-packagesのなかにパッケージのフォルダができる。  
+\Python34\Lib\site-packagesのなかにパッケージのフォルダができる。  
 当方は Python 3.4.4 で動作を確認しています。  
 
 #### Maxima  
