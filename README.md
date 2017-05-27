@@ -218,7 +218,7 @@ maximaで処理した結果を貼り付ければよいのですが、
 
 tex2maxima2tex()の返り値はファイルresult.texに保存します。  
 \input{../result.tex}でそれをLaTeXのコードの間に差し込み、  
-更に、arrayjob を使って、配列のように要素を呼び出し、数式処理した結果を貼り付けます。  	
+更に、arrayjob を使って、配列のように要素を呼び出し、数式処理した結果を貼り付けます。  
 The ‘arrayjob’ package Management of arrays in LaTEX.  
 
 maxima の batch file temp.bat  
