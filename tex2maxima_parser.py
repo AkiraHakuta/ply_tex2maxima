@@ -296,8 +296,8 @@ def run_maxima(batch_dir):
         print('set maxima_bat')
         return 1
     maxima_ret = str(maxima_ret)
-    maxima_ret = re.sub(r'\s+false\\n\(%i\d+\)\s','',maxima_ret)
-    maxima_ret = re.sub(r'\\n\s*','',maxima_ret)
+    maxima_ret = re.sub(r'\s+false(\\r)?(\\n)\(%i\d+\)\s','',maxima_ret)
+    maxima_ret = re.sub(r'(\\r)?(\\n)\s*','',maxima_ret)
     #print(maxima_ret) 
     replace_list= [['\\\\','\\'],['\\it \\%alpha','\\alpha'],['\\it \\%beta','\\beta'],['\\it \\%Gamma','\\gamma'],['\\it \\%theta','\\theta'],['\\it \\%omega','\\omega']
         ,['\\lor','~or~']]
