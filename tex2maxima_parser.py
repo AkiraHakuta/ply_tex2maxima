@@ -322,7 +322,7 @@ def tex2maxima2tex(texexpr_command_list, batch_dir, test=0):
     maxima_command += 'load("mactex-utilities.lisp");\r'# LaTeX output
     maxima_command += 'load(functs);\r'
     maxima_command += 'load(solve_rec);\r'
-    maxima_command += 'load (sqdnst);\r'
+    maxima_command += 'load(sqdnst);\r'
     maxima_command += 'load(fourier_elim);\r'
     maxima_command += 'begin;\r'
     for el in texexpr_command_list:
