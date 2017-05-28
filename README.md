@@ -219,8 +219,8 @@ pyはPython、cはcommandの意味。
 は、valueを可能ならば文字列に変えて出力するコマンドのようです。    
 \py{'text'}と\pyc{print('text')} は共に、文字列 text を出力します。     
 
-maximaで処理した結果を貼り付ければよいのですが、  
-数式毎にmaximaを立ち上げると、時間が掛かりすぎて実用的ではありません。  
+Maximaで処理した結果を貼り付ければよいのですが、  
+数式毎にMaximaを立ち上げると、時間が掛かりすぎて実用的ではありません。  
 まとめて、1回で処理します。  
 
 tex2maxima2tex()の返り値はファイルresult.texに保存します。  
@@ -228,7 +228,7 @@ tex2maxima2tex()の返り値はファイルresult.texに保存します。
 更に、arrayjob を使って、配列のように要素を呼び出し、数式処理した結果を貼り付けます。  
 The ‘arrayjob’ package Management of arrays in LaTEX.  
 
-maxima の batch file temp.bat  
+Maxima の batch file temp.bat  
 数式処理した最終的な LateX のコードの文字列 result.tex  
 は共に pythontex が生成するフォルダの中に保存されます。  
 
@@ -238,7 +238,7 @@ maxima の batch file temp.bat
 
 ### example4.tex 
 具体的な使用例(因数分解)  
-example2.tex のmaxima 版です。  
+example2.tex のMaxima 版です。  
 
 ### example5.tex 
 具体的な使用例(漸化式)    
