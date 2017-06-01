@@ -268,41 +268,41 @@ index=0
 			\hfill solution:~~$\py{r'\displaystyle \resultlist('+str(index)+')'}$\par\myvspace
 			
 		\item\pyc{texexpr =  r'a_{n+2}=12a_{n+1}-35a_{n}'}    
-				\pyc{a1='2';a2='24'} 
-				\pyc{index+=1}		
-				\pyc{texexpr_command_list.append([texexpr,MULT_NSP,'solve_rec_3',str(a1),str(a2)])}
-				\py{'$\displaystyle {:s},~~a_1={:s},~a_2={:s}$'.format(mylatexstyle(texexpr),a1,a2)}
-				\hfill solution:~~$\py{r'\displaystyle \resultlist('+str(index)+')'}$\par\myvspace
+			\pyc{a1='2';a2='24'} 
+			\pyc{index+=1}		
+			\pyc{texexpr_command_list.append([texexpr,MULT_NSP,'solve_rec_3',str(a1),str(a2)])}
+			\py{'$\displaystyle {:s},~~a_1={:s},~a_2={:s}$'.format(mylatexstyle(texexpr),a1,a2)}
+			\hfill solution:~~$\py{r'\displaystyle \resultlist('+str(index)+')'}$\par\myvspace
 			
-			\item \pyc{texexpr=r'2x^2+3x+4=0'}
-				\pyc{index+=1}		
-				\pyc{texexpr_command_list.append([texexpr,MULT_NSP,'solve','x'])}
-				\py{'$\displaystyle {:s}$'.format(mylatexstyle(texexpr))}
-				\hfill solution:~~$\py{r'\displaystyle \resultlist('+str(index)+')'}$\par\myvspace
+		\item \pyc{texexpr=r'2x^2+3x+4=0'}
+			\pyc{index+=1}		
+			\pyc{texexpr_command_list.append([texexpr,MULT_NSP,'solve','x'])}
+			\py{'$\displaystyle {:s}$'.format(mylatexstyle(texexpr))}
+			\hfill solution:~~$\py{r'\displaystyle \resultlist('+str(index)+')'}$\par\myvspace
 				
-			\item \pyc{texexpr=r'x^2-3x-4 \leqq 0'}
-				\pyc{index+=1}		
-				\pyc{texexpr_command_list.append([texexpr,MULT_CDOT,'fourier_elim','x'])}
-				\py{'$\displaystyle {:s}$'.format(mylatexstyle(texexpr))}
-				\hfill solution:~~$\py{r'\displaystyle \resultlist('+str(index)+')'}$\par\myvspace
-				
-			\item \pyc{texexpr=r'x^3-2x^2-5x+6 \geqq 0'}
-				\pyc{index+=1}		
-				\pyc{texexpr_command_list.append([texexpr,MULT_CDOT,'fourier_elim','x'])}
-				\py{'$\displaystyle {:s}$'.format(mylatexstyle(texexpr))}
-				\hfill solution:~~$\py{r'\displaystyle \resultlist('+str(index)+')'}$\par\myvspace
-				
-			\item \pyc{texexpr=r'-x^2-x^2'}
-				\pyc{index+=1}		
-				\pyc{texexpr_command_list.append([texexpr,MULT_NSP,'ratsimp'])}
-				\py{'$\displaystyle {:s}=$'.format(mylatexstyle(texexpr))}
-				$\py{r'\displaystyle \resultlist('+str(index)+')'}$\par\myvspace
-				
-			\item \pyc{texexpr=r'\left\{\frac{1}{~2~}a-\left(\frac{1}{~3~}b-\frac{1}{~4~}c\right)\right\}^2'}
-				\pyc{index+=1}		
-				\pyc{texexpr_command_list.append([texexpr,MULT_NSP,'expand'])}
-				\py{'$\displaystyle {:s}=$'.format(mylatexstyle(texexpr))}
-				$\py{r'\displaystyle \resultlist('+str(index)+')'}$\par\myvspace
+		\item \pyc{texexpr=r'x^2-3x-4 \leqq 0'}
+			\pyc{index+=1}		
+			\pyc{texexpr_command_list.append([texexpr,MULT_CDOT,'fourier_elim','x'])}
+			\py{'$\displaystyle {:s}$'.format(mylatexstyle(texexpr))}
+			\hfill solution:~~$\py{r'\displaystyle \resultlist('+str(index)+')'}$\par\myvspace
+
+		\item \pyc{texexpr=r'x^3-2x^2-5x+6 \geqq 0'}
+			\pyc{index+=1}		
+			\pyc{texexpr_command_list.append([texexpr,MULT_CDOT,'fourier_elim','x'])}
+			\py{'$\displaystyle {:s}$'.format(mylatexstyle(texexpr))}
+			\hfill solution:~~$\py{r'\displaystyle \resultlist('+str(index)+')'}$\par\myvspace
+
+		\item \pyc{texexpr=r'-x^2-x^2'}
+			\pyc{index+=1}		
+			\pyc{texexpr_command_list.append([texexpr,MULT_NSP,'ratsimp'])}
+			\py{'$\displaystyle {:s}=$'.format(mylatexstyle(texexpr))}
+			$\py{r'\displaystyle \resultlist('+str(index)+')'}$\par\myvspace
+
+		\item \pyc{texexpr=r'\left\{\frac{1}{~2~}a-\left(\frac{1}{~3~}b-\frac{1}{~4~}c\right)\right\}^2'}
+			\pyc{index+=1}		
+			\pyc{texexpr_command_list.append([texexpr,MULT_NSP,'expand'])}
+			\py{'$\displaystyle {:s}=$'.format(mylatexstyle(texexpr))}
+			$\py{r'\displaystyle \resultlist('+str(index)+')'}$\par\myvspace
 			
 	\end{enumerate}
 
