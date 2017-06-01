@@ -72,7 +72,7 @@ def p_expr_plus(p):
 # expr : expr-expr
 def p_expr_minus(p):
     'expr : expr MINUS expr'
-    p[0] = '{} - {}'.format(p[1], p[3])
+    p[0] = '{}-{}'.format(p[1], p[3])
     
 # expr : {expr}
 def p_expr_brace(p):
