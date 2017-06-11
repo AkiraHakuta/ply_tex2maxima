@@ -1,4 +1,4 @@
-# tex2maxima_parser.py   Author: Akira Hakuta, Date: 2017/05/27
+# tex2maxima_parser.py   Author: Akira Hakuta, Date: 2017/06/11
 # python.exe tex2maxima_parser.py
 
 from ply import yacc
@@ -16,8 +16,8 @@ MULT_NSP=1
 MULT_CDOT=2
 MULT_TIMES=3
 
-# variable : a,b,...,z,A,...,Z,\alpha,\beta,\gamma,\theta,\omega
-# constant : pi --> \ppi, imaginary unit --> \ii, napier constant --> \ee
+# variable : a,b,...,z,A,...,Z,\\alpha,\\beta,\\gamma,\\theta,\\omega
+# constant : pi --> \\ppi, imaginary unit --> \\ii, napier constant --> \\ee
 
 precedence = (
     ('left', 'PLUS', 'MINUS'),
@@ -41,7 +41,7 @@ def p_expr_exponent(p):
     #p[0]  p[1] p[2]   p[3]
     p[0] = '({})^({})'.format(p[1], p[3])
     
-# expr : expr !
+# expr : expr!
 def p_expr_factorial(p):
     'expr : expr FACTORIAL'
     p[0] = 'factorial({})'.format(p[1])
@@ -57,7 +57,7 @@ def p_expr_exprexpr(p):
     'expr : expr expr'
     p[0] = '{}*{}'.format(p[1],p[2])
               
-# expr : expr \div expr
+# expr : expr \\div expr
 def p_expr_div(p):
     'expr : expr DIV expr'
     p[0] = '{}*(({})^(-1))'.format(p[1],p[3])
@@ -135,48 +135,48 @@ def p_expr_float(p):
     #p[0] = 'nsimplify(Rational({}))'.format(p[1])
     p[0] = 'ratsimp({})'.format(p[1])
         
-# expr : \sqrt{expr}
+# expr : \\sqrt{expr}
 def p_expr_sqrt1(p):
     'expr : F_SQRT LBRACE expr RBRACE'
     p[0] = 'sqrt({})'.format(p[3])    
     
-# expr : \sqrt[expr]{expr}
+# expr : \\sqrt[expr]{expr}
 def p_expr_sqrt2(p):
     'expr : F_SQRT LBRACKET expr RBRACKET LBRACE expr RBRACE'
     #p[0] = '(root(({}),({})))'.format(p[6],p[3])
     p[0] = '(({})^(({})^(-1)))'.format(p[6],p[3])
 
-# expr : \frac{expr}{expr}
+# expr : \\frac{expr}{expr}
 def p_expr_frac(p):
     'expr : F_FRAC LBRACE expr RBRACE LBRACE expr RBRACE'
     p[0] = '({}) * ({})^(-1)'.format(p[3], p[6])   
 
-# expr : \sin{expr} | \cos{expr} | \tan{expr} 
+# expr : \\sin{expr} | \\cos{expr} | \\tan{expr} 
 def p_expr_f_trigonometric(p):
     'expr : F_TRIG LBRACE expr RBRACE'
     p[0] = '{}({})'.format(p[1][1:], p[3])
      
-# expr : \log{expr}
+# expr : \\log{expr}
 def p_expr_f_log(p):
     'expr : F_LOG LBRACE expr RBRACE'
     p[0] = 'log({})'.format(p[3])
 
-# expr : \sin^{expr}{expr} | \cos^{expr}{expr} | \tan^{expr}{expr} 
+# expr : \\sin^{expr}{expr} | \\cos^{expr}{expr} | \\tan^{expr}{expr} 
 def p_expr_f_trigonometric_car(p):
     'expr : F_TRIG_CAR LBRACE expr RBRACE LBRACE expr RBRACE'
     p[0] = '({}({}))^({})'.format(p[1][1:4],p[6],p[3])  
 
-# expr : \log_{expr}{expr}
+# expr : \\log_{expr}{expr}
 def p_expr_f_log_ub(p):
     'expr : F_LOG_UB LBRACE expr RBRACE LBRACE expr RBRACE '
     p[0] = 'log({})*(log({})^(-1))'.format(p[6],p[3])
     
-# expr : \sum_{k=expr}^{expr}{expr}
+# expr : \\sum_{k=expr}^{expr}{expr}
 def p_expr_sum(p):
     'expr : F_SUM  UB LBRACE ALPHABET EQUAL expr  RBRACE EXPONENT LBRACE expr RBRACE LBRACE expr RBRACE'
     p[0] = 'nusum({},{},{},{})'.format(p[13],p[4],p[6],p[10])
  
-# expr : \frac{d}{dx} {expr}
+# expr : \\frac{d}{dx} {expr}
 def p_expr_diff(p):
     'expr : DIFF LBRACE DX RBRACE LBRACE expr RBRACE'
     x=p[3][1:]    
@@ -185,7 +185,7 @@ def p_expr_diff(p):
     else:
         p[0] = 'diff({},{},1)'.format(p[6], p[3][1]) 
     
-# expr : \int{expr dx}
+# expr : \\int{expr dx}
 def p_expr_int(p):
     'expr : F_INT LBRACE expr DX RBRACE'
     x=p[4][1:]
@@ -194,7 +194,7 @@ def p_expr_int(p):
     else:
         p[0] = 'integrate({},{})'.format(p[3],p[4][1])    
 
-# expr : \int^{expr}_{expr}{expr dx}
+# expr : \\int^{expr}_{expr}{expr dx}
 def p_expr_definite_int(p):
     'expr : F_INT UB LBRACE expr RBRACE EXPONENT LBRACE expr RBRACE LBRACE expr DX RBRACE'
     x=p[8][1:]
@@ -203,7 +203,7 @@ def p_expr_definite_int(p):
     else:
         p[0] = 'integrate({},{},{},{})'.format(p[11],p[12][1],p[4],p[8])
     
-# expr : \lim_{expr->expr}{expr}
+# expr : \\lim_{expr->expr}{expr}
 def p_expr_lim(p):
     'expr : LIM UB LBRACE expr TO expr RBRACE LBRACE expr RBRACE'
     p[0] = 'limit({}, {}, {})'.format(p[9],p[4],p[6])
@@ -213,15 +213,15 @@ def p_expr_seq_term(p):
     'expr : F_SEQ_TERM LBRACE expr RBRACE'
     p[0] = 'a({})'.format(p[3]) 
           
-# expr : _{expr}C_{expr} |  _{expr}P_{expr}
+# expr : _{expr}\\C_{expr} |  _{expr}\\P_{expr}
 def p_expr_combi_or_permutation(p):
     'expr : UB LBRACE expr RBRACE COMBI_PERMU UB LBRACE expr RBRACE'
-    if p[5] == r'\C':
+    if p[5] == '\\C':
         p[0] = 'combination({},{})'.format(p[3],p[8])
-    elif p[5] == r'\P':
+    elif p[5] == '\\P':
         p[0] = 'permutation({},{})'.format(p[3],p[8])
         
-# expr : \left| expr \right|
+# expr : \\left| expr \\right|
 def p_expr_abs(p):
     'expr : LPIPE expr RPIPE'
     p[0] = 'abs({})'.format(p[2])        
@@ -270,11 +270,10 @@ logging.basicConfig(
 
 
 def tex2maxima(texexpr):
-    replace_list=[['~',''],['\,',''],['\:',''],['\;',''],['\!',''], [r'\{','('],[r'\}', ')'],[r'\left(','('],[r'\right)', ')'],  
-        [r'\alpha','%alpha'],[r'\beta','%beta'],[r'\gamma','%Gamma'],[r'\omega','%omega'],[r'\theta','%theta']]
+    replace_list=[['~',''],['\\,',''],['\\:',''],['\\;',''],['\\!',''], ['\\{','('],['\\}', ')'],['\\left(','('],['\\right)', ')'],  
+        ['\\alpha','%alpha'],['\\beta','%beta'],['\\gamma','%Gamma'],['\\omega','%omega'],['\\theta','%theta']]
     for le in replace_list:
-        texexpr=texexpr.replace(le[0],le[1]) 
-    
+        texexpr=texexpr.replace(le[0],le[1])     
     lexer.input(texexpr)
     maximaexpr = parser.parse(texexpr, lexer=lexer)
     #parser.parse(texexpr, debug=logging.getLogger()) # debug!
@@ -282,7 +281,7 @@ def tex2maxima(texexpr):
  
     
 def mylatexstyle(texexpr):
-    replace_list=[[r'\ii',' i'],[r'\ee',' e'],[r'\ppi',r'\pi '],[r'\C',r'\mathrm{C}'],[r'\P',r'\mathrm{P}']]
+    replace_list=[['\\ii',' i'],['\\ee',' e'],['\\ppi','\\pi '],['\\C','\\mathrm{C}'],['\\P','\\mathrm{P}']]
     for le in replace_list:
         texexpr=texexpr.replace(le[0],le[1]) 
     return texexpr
@@ -311,7 +310,6 @@ def run_maxima(batch_dir):
     for el in maxima_ret_list:
         rl = re.split(r'\$\$',el)
         latex_result_list.append(rl)
-    #print(latex_result_list)
     return latex_result_list
     
     
@@ -365,17 +363,17 @@ def tex2maxima2tex(texexpr_command_list, batch_dir, test=0):
     except:
         return 1    
     latex_result_list = run_maxima(batch_dir)
-    if latex_result_list == 1:
+    #print(latex_result_list)
+    if latex_result_list == []:
         return 1
     for i in range(len(texexpr_command_list)):
         mult_code=texexpr_command_list[i][1]
         if mult_code == MULT_CDOT:
-            latex_result_list[i][1]=latex_result_list[i][1].replace(r'\,',r'\cdot ')
+            latex_result_list[i][1]=latex_result_list[i][1].replace('\\,','\\cdot ')
         elif mult_code == MULT_NSP:
-            latex_result_list[i][1]=latex_result_list[i][1].replace(r'\,',' ')
+            latex_result_list[i][1]=latex_result_list[i][1].replace('\\,',' ')
         elif mult_code == MULT_TIMES:
-            latex_result_list[i][1]=latex_result_list[i][1].replace(r'\,',r'\times ')            
-    #print(latex_result_list)
+            latex_result_list[i][1]=latex_result_list[i][1].replace('\\,','\\times ')            
     latex_result_str = ''
     if test == 1:
         for i in range(len(latex_result_list)):
@@ -389,26 +387,26 @@ def tex2maxima2tex(texexpr_command_list, batch_dir, test=0):
         
 if __name__ == '__main__':   
     texexpr_comand_list = [
-    [r'2^3',MULT_NSP,'ratsimp'], 
-    [r'1.234',MULT_NSP,'ratsimp'],
-    [r'\frac{2}{6}',MULT_NSP,'ratsimp'],
-    [r'(x+2y)^2',MULT_SP,'expand'],
-    [r'2x-4xy-2y+1',MULT_NSP,'factor'],
-    [r'%alpha^2-9%beta^2',MULT_CDOT,'factor'],
-    [r'\ee^{\ppi \ii}',MULT_NSP,'ratsimp'],
-    [r'\sin {\frac{5}{4}\ppi}',MULT_NSP,'ratsimp'],
-    [r'\log{\ee^3}',MULT_NSP,'ratsimp'],
-    [r'\log_{2}{8}',MULT_NSP,'radcan'],
-    [r'\left|\sqrt{7} -3 \right|',MULT_NSP,'ratsimp'],
-    [r'\frac{d}{dx}{\log{x}}',MULT_NSP,'ratsimp'],
-    [r'\int{\cos^{2}{\theta} d\theta}',MULT_TIMES,'ratsimp'],
-    [r'\int_{1}^{2}{t^2 dt}',MULT_NSP,'ratsimp'],
-    [r'a_{n+1}=3a_{n}+8',MULT_CDOT,'solve_rec_2','2'],
-    [r'a_{n+2}-6a_{n+1}+9a_{n}=0',MULT_CDOT,'solve_rec_3','1','6'],    
-    [r'2x+y=13,x-2y=-6',MULT_NSP,'solve','x,y'],
-    [r'x^2-3x-4 \leqq 0',MULT_CDOT,'fourier_elim','x'],
-    [r'\sqrt{8-2\sqrt{15}}',MULT_NSP, 'sqrtdenest'],
-    [r'\sqrt{x^2}',MULT_NSP, 'ratsimp'],
+    ['2^3',MULT_NSP,'ratsimp'], 
+    ['1.234',MULT_NSP,'ratsimp'],
+    ['\\frac{2}{6}',MULT_NSP,'ratsimp'],
+    ['(x+2y)^2',MULT_SP,'expand'],
+    ['2x-4xy-2y+1',MULT_NSP,'factor'],
+    ['%alpha^2-9%beta^2',MULT_CDOT,'factor'],
+    ['\\ee^{\\ppi \\ii}',MULT_NSP,'ratsimp'],
+    ['\\sin {\\frac{5}{4}\\ppi}',MULT_NSP,'ratsimp'],
+    ['\\log{\\ee^3}',MULT_NSP,'ratsimp'],
+    ['\\log_{2}{8}',MULT_NSP,'radcan'],
+    ['\\left|\\sqrt{7} -3 \\right|',MULT_NSP,'ratsimp'],
+    ['\\frac{d}{dx}{\\log{x}}',MULT_NSP,'ratsimp'],
+    ['\\int{\\cos^{2}{\\theta} d\\theta}',MULT_TIMES,'ratsimp'],
+    ['\\int_{1}^{2}{t^2 dt}',MULT_NSP,'ratsimp'],
+    ['a_{n+1}=3a_{n}+8',MULT_CDOT,'solve_rec_2','2'],
+    ['a_{n+2}-6a_{n+1}+9a_{n}=0',MULT_CDOT,'solve_rec_3','1','6'],    
+    ['2x+y=13,x-2y=-6',MULT_NSP,'solve','x,y'],
+    ['x^2-3x-4 \\leqq 0',MULT_CDOT,'fourier_elim','x'],
+    ['\\sqrt{8-2\\sqrt{15}}',MULT_NSP, 'sqrtdenest'],
+    ['\\sqrt{x^2}',MULT_NSP, 'ratsimp'],
     ]
 
     test = 1
