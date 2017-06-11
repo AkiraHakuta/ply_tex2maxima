@@ -262,11 +262,11 @@ PC環境 CPU: Corei7-5600U   RAM: 8.00GB
 ```
 				number of expression	 	Elapsed Time
 example21.tex (Maxima)			39			0:00:04.820
-example22.tex (Maxima)			 8			0:00:04.669
-example23.tex (Maxima)			 4			0:00:04.777
+example22.tex (Maxima)			 8			0:00:04.195
+example23.tex (Maxima)			 4			0:00:04.226
 
 example11.tex ( SymPy)			39			0:00:08.902
-example12.tex ( SymPy)			 8			0:00:03.324
+example12.tex ( SymPy)			 8			0:00:03.610
 ```
 Maxima は処理する数式の数が増えても、経過時間にはほとんど差がありません。  
 batch file に処理するコマンドをまとめ、1回で処理しているので、当然の結果と思われます。  
