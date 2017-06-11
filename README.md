@@ -239,8 +239,8 @@ Maxima の batch file temp.bat
 ### exampl22.tex 
 具体的な使用例  
 example12.tex のMaxima 版です。  
-多段組enumerateをtabularxで実現しています。  
-pythonにLaTeXのコードをr'\frac{1}{2}'の形で渡すと、ERRORになることがあります。  
+多段組enumerateをtabularxで実現しています。  
+そのコードの中で、pythonにLaTeXのコードをr'\frac{1}{2}'の形で渡すと、ERRORになることがあります。  
 その場合は、'\\\\frac{1}{2}'を使ってください。  
 
 
@@ -261,12 +261,12 @@ PC環境 CPU: Corei7-5600U   RAM: 8.00GB
 
 ```
 				number of expression	 	Elapsed Time
-example3.tex (Maxima)			39			0:00:04.820
-example4.tex (Maxima)			 8			0:00:04.669
-example5.tex (Maxima)			 4			0:00:04.777
+example21.tex (Maxima)			39			0:00:04.820
+example22.tex (Maxima)			 8			0:00:04.669
+example23.tex (Maxima)			 4			0:00:04.777
 
-example1.tex ( SymPy)			39			0:00:08.902
-example2.tex ( SymPy)			 8			0:00:03.324
+example11.tex ( SymPy)			39			0:00:08.902
+example12.tex ( SymPy)			 8			0:00:03.324
 ```
 Maxima は処理する数式の数が増えても、経過時間にはほとんど差がありません。  
 batch file に処理するコマンドをまとめ、1回で処理しているので、当然の結果と思われます。  
