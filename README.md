@@ -2,7 +2,7 @@
 
 ply_tex2maxima parses LaTeX math expressions and converts it into the equivalent Maxima form by using PLY.  
 
-Author:Akira Hakuta,  Date: 2017/05/27     
+Author:Akira Hakuta,  Date: 2017/06/11       
 
 ## Installation (windows)
 
@@ -29,28 +29,28 @@ maxima_bat='C:\\maxima-5.39.0\\bin\\maxima.bat'
 python.exe tex2maxima_parser.py
    --> Generating LALR tables
    
-variable : a,b,...,z,A,....,Z,\alpha,\beta,\gamma,\theta,\omega
-constant : pi --> \ppi, imaginary unit --> \ii, napier constant --> \ee
+variable : a,b,...,z,A,....,Z,\\alpha,\\beta,\\gamma,\\theta,\\omega
+constant : pi --> \\ppi, imaginary unit --> \\ii, napier constant --> \\ee
 
 ply_tex2maxima LaTeX expression style
-\sin{x}
-\cos^{2}{\theta}
-\log{\ee}
-\log_{2}{8}
-\frac{d}{dx}{(x^3+x^2+x+1)}
-\int{(x^3+x^2+x+1) dx}
-\int_{1}^{3}{(x-1)(x-3)^2 dx}
-\lim_{x \to -\infty} {(\sqrt{x^2+3x}+x)}
-\sum_{k=1}^{n}{k(k+1)^2}
-\left| 3 - \ppi \right|
+\\sin{x}
+\\cos^{2}{\\theta}
+\\log{\\ee}
+\\log_{2}{8}
+\\frac{d}{dx}{(x^3+x^2+x+1)}
+\\int{(x^3+x^2+x+1) dx}
+\\int_{1}^{3}{(x-1)(x-3)^2 dx}
+\\lim_{x \\to -\\infty} {(\\sqrt{x^2+3x}+x)}
+\\sum_{k=1}^{n}{k(k+1)^2}
+\\left| 3 - \\ppi \\right|
 a_{n}
-\{a-2(b-c)\}^2  
-_{10}\P_{3}  
-_{10}\C_{3}  
+\\{a-2(b-c)\\}^2  
+_{10}\\P_{3}  
+_{10}\\C_{3}  
 
-pdflatex.exe -synctex=1 -interaction=nonstopmode example3.tex  
-pythontex.exe example3.tex  
-pdflatex.exe -synctex=1 -interaction=nonstopmode example3.tex  
+pdflatex.exe -synctex=1 -interaction=nonstopmode example21.tex  
+pythontex.exe example21.tex  
+pdflatex.exe -synctex=1 -interaction=nonstopmode example21.tex  
 ```
 ## Examples
 
@@ -121,9 +121,9 @@ tex2maxima2tex(texexpr_command_list, batch_dir, test=0)
 
 更に  
 ```
-pdflatex.exe -synctex=1 -interaction=nonstopmode example3.tex
-pythontex.exe example3.tex
-pdflatex.exe -synctex=1 -interaction=nonstopmode example3.tex
+pdflatex.exe -synctex=1 -interaction=nonstopmode example21.tex
+pythontex.exe example21.tex
+pdflatex.exe -synctex=1 -interaction=nonstopmode example21.tex
 ```
 を実行すると、example3.pdf が作成できます。  
 
@@ -200,7 +200,7 @@ run_maxima(batch_dir) の返り値(数式処理した結果のlist)に適当な�
 各要素を'&'で区切った文字列の形で返します。  
 
 
-### example3.tex  
+### example21.tex  
 pythontex について  
 
 \begin{pycode}  
