@@ -240,9 +240,8 @@ Maxima の batch file temp.bat
 具体的な使用例  
 example12.tex のMaxima 版です。  
 多段組enumerateをtabularxで実現しています。  
-pythonにLaTeXのコードをr'\frac{1}{2}'の形で渡すと、ERRORになることがあります。  
-その場合は、'\\\\frac{1}{2}'を使ってください。  
-
+pythonにLaTeXのコードをr'\frac{1}{2}'の形で渡すと、ERRORになることがあります。　　
+その場合は、'\\\\frac{1}{2}'を使ってください。　　
 
 ### example23.tex 
 具体的な使用例(漸化式)    
