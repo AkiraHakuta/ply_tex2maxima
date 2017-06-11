@@ -236,14 +236,18 @@ Maxima の batch file temp.bat
 不等式については、解にルートがついてしまうと解けない。  
 
 
-### example4.tex 
-具体的な使用例(因数分解)  
-example2.tex のMaxima 版です。  
+### exampl22.tex 
+具体的な使用例  
+example12.tex のMaxima 版です。  
 
-### example5.tex 
+### example23.tex 
 具体的な使用例(漸化式)    
 4問ともSymPy では解けない(後半２問は誤答を出力)  
 Maxima は正解を出力します。  
+
+### example23.tex  
+
+
 
 
 
