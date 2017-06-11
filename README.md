@@ -245,10 +245,9 @@ example12.tex のMaxima 版です。
 4問ともSymPy では解けない(後半２問は誤答を出力)  
 Maxima は正解を出力します。  
 
-### example23.tex  
+### example24_emath.tex
 
-
-
+具体的な使用例 (platex + emath) です。  
 
 
 
@@ -280,6 +279,8 @@ Python34\Lib\site-packages に、例えば、
 ply_tex2maxima-master  
 の1行だけのファイル ply_tex2maxima-master.pth を作ります。    
 Pythonは .pth の付いたファイルを読み込んで path を設定します。絶対path でもOK。    
+
+
 
 
 
