@@ -250,10 +250,8 @@ Maxima は正解を出力します。
 
 ### example24_emath.tex
 
-具体的な使用例 (platex + emath) です。
-emath <http://emath.s40.xrea.com>
-
-
+具体的な使用例 (platex + emath) です。  
+emath <http://emath.s40.xrea.com>  
 
 ### pythontex.exe の経過時間の比較  
 timeit.exe で pythontex.exe exmaple?.tex の開始から終了までの経過時間を計測してみました。  
