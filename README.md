@@ -94,7 +94,7 @@ MULT_TIMES=3
 #### TexLive  
 <https://www.tug.org/texlive/acquire-netinstall.html>  
 install-tl-windows.exe でインスツールする。  
-\texlive\2016\bin\win32の中にpythontex.exeがあります。  
+\texlive\2017\bin\win32の中にpythontex.exeがあります。  
 これを使う！  
 
 #### Python3  
@@ -250,7 +250,8 @@ Maxima は正解を出力します。
 
 ### example24_emath.tex
 
-具体的な使用例 (platex + emath) です。  
+具体的な使用例 (platex + emath) です。
+emath <http://emath.s40.xrea.com>
 
 
 
