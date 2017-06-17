@@ -113,7 +113,7 @@ bin\maxima.bat を使います。
 ### 使い方  
 tex2maxima_parser.py  
 maxima_bat='C:\\\\maxima-5.39.0\\\\bin\\\\maxima.bat'  
-のように、ディリクトリを含めて、maxima.batを指定。  
+のように、ディリクトリを含めて、maxima_batを指定。  
 python.exe tex2sym_parser.py  
 を実行。出力を見ると  
 tex2maxima2tex(texexpr_command_list, batch_dir, test=0)  
