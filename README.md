@@ -101,6 +101,7 @@ install-tl-windows.exe でインスツールする。
 まず、<https://www.python.org/downloads/windows/> に入って、  
 Python3 の好きなバージョン、32bit、64bitを選び、インスツールして下さい。  
 コマンドプロンプトで   
+pip install pygments  
 pip install ply  
 と打ち込む。Successfully installed ...　と表示されればOK!    
 \Python34\Lib\site-packagesのなかにパッケージのフォルダができる。  
