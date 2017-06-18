@@ -87,9 +87,7 @@ MULT_TIMES=3
 ### in japanese
 
 #### ply_tex2maxima は LaTeX の数式コードを解析して、Maxima のコードに変換する Python のプログラムツールです。  
-すでに、antlr4 で作られた  
-LaTeX2SymPy <https://github.com/augustt198/latex2sympy> があります。  
-今回、Python の構文解析ライブラリ PLY で作ってみました。  
+Python の構文解析ライブラリ PLY で作ってみました。  
 
 ### 各ソフトのインスツール   
 #### TexLive  
