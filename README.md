@@ -126,7 +126,7 @@ pdflatex.exe -synctex=1 -interaction=nonstopmode example21.tex
 pythontex.exe example21.tex
 pdflatex.exe -synctex=1 -interaction=nonstopmode example21.tex
 ```
-を実行すると、example3.pdf が作成できます。  
+を実行すると、example21.pdf が作成できます。  
 
 ### 各ファイルの説明  
 ### tex2maxima_lexer.py 
