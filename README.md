@@ -120,6 +120,10 @@ python.exe tex2sym_parser.py
 tex2maxima2tex(texexpr_command_list, batch_dir, test=0)  
 が何をしているかか、分かると思います。    
 
+※ LaTeX の数式コード texexpr は  
+ ply_tex2maxima LaTeX expression style  の形で入力してください。  
+ つまり、関数の引数は { } でくくって下さい。例 '\\\\sin{x}', '\\\\int_{1}^{2}{x^3 dx}'。  
+
 更に  
 ```
 pdflatex.exe -synctex=1 -interaction=nonstopmode example21.tex
