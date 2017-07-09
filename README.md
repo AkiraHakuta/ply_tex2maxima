@@ -91,7 +91,7 @@ MULT_TIMES=3
 Python の構文解析ライブラリ PLY で作ってみました。  
 
 ### 各ソフトのインスツール   
-#### TexLive  
+#### TeXLive  
 <https://www.tug.org/texlive/acquire-netinstall.html>  
 install-tl-windows.exe でインスツールする。  
 \texlive\2017\bin\win32の中にpythontex.exeがあります。  
