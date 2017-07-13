@@ -1,4 +1,4 @@
-# tex2maxima_lexer.py   Author: Akira Hakuta, Date: 2017/06/11
+# tex2maxima_lexer.py   Author: Akira Hakuta, Date: 2017/07/13
 # python.exe tex2maxima_lexer.py
 
 from ply import lex
@@ -123,11 +123,11 @@ def t_ALPHABET(t):
 
    
 def t_DIFF(t):
-    r'\\frac\{d\}'
+    r'\\frac\{d\}|\\dfrac\{d\}'
     return t    
  
 def t_F_FRAC(t):
-    r'\\frac'
+    r'\\frac|\\dfrac'
     return t
          
 def t_F_SQRT(t):

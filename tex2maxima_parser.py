@@ -1,4 +1,4 @@
-# tex2maxima_parser.py   Author: Akira Hakuta, Date: 2017/06/11
+# tex2maxima_parser.py   Author: Akira Hakuta, Date: 2017/07/13
 # python.exe tex2maxima_parser.py
 
 from ply import yacc
@@ -390,7 +390,8 @@ if __name__ == '__main__':
     ['2^3',MULT_NSP,'ratsimp'], 
     ['1.234',MULT_NSP,'ratsimp'],
     ['\\frac{2}{6}',MULT_NSP,'ratsimp'],
-    ['(x+2y)^2',MULT_SP,'expand'],
+    ['\\dfrac{3}{12}',MULT_NSP,'ratsimp'],
+    ['(x+2y)^5',MULT_SP,'expand'],
     ['2x-4xy-2y+1',MULT_NSP,'factor'],
     ['%alpha^2-9%beta^2',MULT_CDOT,'factor'],
     ['\\ee^{\\ppi \\ii}',MULT_NSP,'ratsimp'],
