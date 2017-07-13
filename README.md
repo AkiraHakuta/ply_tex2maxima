@@ -2,7 +2,7 @@
 
 ply_tex2maxima parses LaTeX math expressions and converts it into the equivalent Maxima form by using PLY.  
 
-Author:Akira Hakuta,  Date: 2017/06/18       
+Author:Akira Hakuta,  Date: 2017/07/13       
 
 ## Installation (windows)
 
@@ -292,13 +292,10 @@ Pythonは .pth の付いたファイルを読み込んで path を設定しま�
 
 ```
 多段組enumerateで出る不具合を修正  
-```  
+```
 
+2017/07/13 
 
-
-
-
-
-
-
-
+```
+\\dfrac を 追加  
+```
