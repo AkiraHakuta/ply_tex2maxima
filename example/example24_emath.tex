@@ -1,4 +1,4 @@
-% example24_emath.tex   Author: Akira Hakuta, Date: 2017/06/11
+% example24_emath.tex   Author: Akira Hakuta, Date: 2017/07/13
 % platex.exe -kanji=utf8 -shell-escape -src -interaction=nonstopmode example24_emath.tex
 % pythontex.exe example24_emath.tex
 % platex.exe -kanji=utf8 -shell-escape -src -interaction=nonstopmode example24_emath.tex
@@ -48,13 +48,13 @@ else:
 \newcommand{\solverecii}[3]{
 	\hspace{-2mm}\pyc{texexpr=#1;a1=#2;index+=1}		
 	\pyc{texexpr_command_list.append([texexpr,MULT_CDOT,'solve_rec_2',a1])}
-	\py{'$\displaystyle {:s}\,,~~a_1={:s}$'.format(mylatexstyle(texexpr),a1)}\par\vspace{#3}
+	\py{'${:s}\,,~~a_1={:s}$'.format(mylatexstyle(texexpr),a1)}\par\vspace{#3}
 	\hfill \py{anscolor} Ans.~~$\py{r'\displaystyle \resultlist('+str(index)+')'}$\par}
 
 \newcommand{\solvereciii}[4]{
 	\hspace{-2mm}\pyc{texexpr=#1;a1=#2;a2=#3;index+=1}		
 	\pyc{texexpr_command_list.append([texexpr,MULT_CDOT,'solve_rec_3',a1,a2])}
-	\py{'$\displaystyle {:s}\,,~~a_1={:s}\,,~a_2={:s}$'.format(mylatexstyle(texexpr),a1,a2)}\par\vspace{#4}
+	\py{'${:s}\,,~~a_1={:s}\,,~a_2={:s}$'.format(mylatexstyle(texexpr),a1,a2)}\par\vspace{#4}
 	\hfill \py{anscolor} Ans.~~$\py{r'\displaystyle \resultlist('+str(index)+')'}$\par}
 
 \usepackage{arrayjob}
@@ -80,9 +80,9 @@ else:
 	 	\item 次の漸化式を解け。
 		 	\begin{edaenumerate}(-2zw)[(1)]			 		
 		 		\item \solverecii{'a_{n+1}=-2a_{n}+3^n'}{'1'}{\SPB}
-		 		\item \solverecii{r'a_{n+1}=\frac{1}{\,2-a_{n}\,}'}{r'\frac{1}{\,2\,}'}{\SPB}		 		
+		 		\item \solverecii{r'a_{n+1}=\dfrac{1}{\,2-a_{n}\,}'}{r'\dfrac{1}{\,2\,}'}{\SPB}		 		
 		 		\item \solverecii{'na_{n+1}=(n+1)a_{n}+1'}{'1'}{\SPB}
-		 		\item \solverecii{r'a_{n+1}=\frac{4a_{n}+1}{2a_{n}+3}'}{'2'}{\SPB}		 		
+		 		\item \solverecii{r'a_{n+1}=\dfrac{4a_{n}+1}{2a_{n}+3}'}{'2'}{\SPB}		 		
 		 	\end{edaenumerate}
 	 	
 	 \end{enumerate}
