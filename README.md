@@ -67,25 +67,17 @@ MULT_CDOT=2
 MULT_TIMES=3
 
 ['2^3', 1, 'ratsimp'] -->  tex(ratsimp(2^3)) --> 8
-['1.234', 1, 'ratsimp'] --> tex(ratsimp(ratsimp(1.234)))rat: replaced 1.234 by 617/500 = 1.234 --> \frac{617}{500}
 ['\\frac{2}{6}', 1, 'ratsimp'] --> tex(ratsimp(2*6^-1)) --> \frac{1}{3}
-['(x+2y)^2', 0, 'expand'] --> tex(expand((x+2*y)^2)) --> 4\,y^2+4\,x\,y+x^2
+['(x+2y)^5', 0, 'expand'] --> tex(expand((x+2*y)^5)) --> 32\,y^5+80\,x\,y^4+80\,x^2\,y^3+40\,x^3\,y^2+10\,x^4\,y+x^5
 ['2x-4xy-2y+1', 1, 'factor'] --> tex(factor(2*x-4*x*y+(-2)*y+1)) --> -\left(2 x+1\right) \left(2 y-1\right)
-['%alpha^2-9%beta^2', 2, 'factor'] --> tex(factor(%alpha^2-9*%beta^2)) --> -\left(3\cdot {\beta}-{\alpha}\right)\cdot \left(3\cdot {\beta}+{\alpha}\right)
 ['\\ee^{\\ppi \\ii}', 1, 'ratsimp'] --> tex(ratsimp(%e^(%pi*%i))) --> -1
 ['\\sin {\\frac{5}{4}\\ppi}', 1, 'ratsimp'] --> tex(ratsimp(sin(5*4^-1*%pi))) --> -\frac{1}{\sqrt{2}}
 ['\\log{\\ee^3}', 1, 'ratsimp'] --> tex(ratsimp(log(%e^3))) --> 3
-['\\log_{2}{8}', 1, 'radcan'] --> tex(radcan(log(8)*log(2)^-1)) --> 3
-['\\left|\\sqrt{7} -3 \\right|', 1, 'ratsimp'] --> tex(ratsimp(abs(sqrt(7)-3))) --> 3-\sqrt{7}
 ['\\frac{d}{dx}{\\log{x}}', 1, 'ratsimp'] --> tex(ratsimp(diff(log(x),x,1))) --> \frac{1}{x}
 ['\\int{\\cos^{2}{\\theta} d\\theta}', 3, 'ratsimp'] --> tex(ratsimp(integrate(cos(%theta)^2,%theta))) --> \frac{\sin \left(2\times {\theta}\right)+2\times {\theta}}{4}
-['\\int_{1}^{2}{t^2 dt}', 1, 'ratsimp'] --> tex(ratsimp(integrate(t^2,t,1,2))) --> \frac{7}{3}
-['a_{n+1}=3a_{n}+8', 2, 'solve_rec_2', '2'] --> tex(ratsimp(solve_rec(a(n+1) = 3*a(n)+8,a(n),a(1) = 2))) --> a\left(n\right)=2\cdot 3^{n}-4
-['a_{n+2}-6a_{n+1}+9a_{n}=0', 2, 'solve_rec_3', '1', '6'] --> tex(ratsimp(solve_rec(a(n+2)-6*a(n+1)+9*a(n) = 0,a(n),a(1) = 1,a(2) = 6))) --> a\left(n\right)=n\cdot 3^{n-1}
-['2x+y=13,x-2y=-6', 1, 'solve', 'x,y'] --> tex(solve([2*x+y = 13,x-2*y = (-1)*6],[x,y])) --> \left[ \left[ x=4 , y=5 \right]  \right] 
-['x^2-3x-4 \\leqq 0', 2, 'fourier_elim', 'x'] --> tex(fourier_elim([x^2-3*x-4 <= 0],[x])) --> \left[ x=-1 \right] ~or~ \left[ x=4 \right] ~or~ \left[ -1<x , x<4\right] 
-['\\sqrt{8-2\\sqrt{15}}', 1, 'sqrtdenest'] --> tex(sqrtdenest(sqrt(8-2*sqrt(15)))) --> \sqrt{5}-\sqrt{3}
-['\\sqrt{x^2}', 1, 'ratsimp'] --> tex(ratsimp(sqrt(x^2))) --> \left| x\right| 
+['\\dfrac{d}{dx}{\\,f(x)}+2f(x)=3\\ee^{4x}', 2, 'desolve', 'f(x)'] --> tex(ratsimp(desolve(diff(f(x),x,1)+2*f(x) = 3*%e^(4*x),f(x)))) --> f\left(x\right)=\frac{e^ {- 2\cdot x }\cdot \left(e^{6\cdot x}+2\cdot f\left(0\right)-1\right)}{2}
+['\\Gamma(6)', 1, 'ratsimp'] --> tex(ratsimp(gamma(6))) --> 120
+['\\zeta(2)', 1, 'ratsimp'] --> tex(ratsimp(zeta(2))) --> \frac{\pi^2}{6}
 ```
 
 
