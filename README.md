@@ -178,8 +178,7 @@ def p_expr_exponent(p):
   
 ’expr : expr EXPONENT expr' は意味のある文字列で、  
 上記コメントのように、配列pの各要素とシンボル expr,EXPONENT の値が対応しています。  
-二重根号、繁分数式 等が正しく処理できるように、必要なp_ 関数を定義していきます。  
-高校数学レベルの数式を対象としました。  
+二重根号、繁分数式 等が正しく処理できるように、必要なp_ 関数を定義していきます。   
 
 絶対値の記号 |expr| は曖昧な記号です。  
 次の式は2通りに解釈できます。  
@@ -253,6 +252,9 @@ Maxima は正解を出力します。
 
 具体的な使用例 (platex + emath) です。  
 emath <http://emath.s40.xrea.com>  
+
+ ### example25.tex
+ 高次微分、ガンマ関数、ゼータ関数 、微分方程式の使用例
 
 ### pythontex.exe の経過時間の比較  
 timeit.exe で pythontex.exe exmaple?.tex の開始から終了までの経過時間を計測してみました。  
