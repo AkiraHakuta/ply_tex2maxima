@@ -1,0 +1,147 @@
+% example25.tex   Author: Akira Hakuta, Date: 2017/07/19
+% pdflatex.exe -synctex=1 -interaction=nonstopmode example25.tex
+% pythontex.exe example25.tex
+% pdflatex.exe -synctex=1 -interaction=nonstopmode example25.tex 
+
+\documentclass[a4paper, 12pt]{article}
+\setlength{\oddsidemargin}{-15mm}
+\setlength{\evensidemargin}{0mm}
+\setlength{\topmargin}{-15mm}
+\setlength{\headheight}{6mm}
+\setlength{\headsep}{5mm}
+\setlength{\textwidth}{190mm}
+\setlength{\textheight}{260mm} 
+\setlength{\hoffset}{0mm}
+
+\usepackage{pythontex}
+\begin{pycode}
+import sys,os
+sys.path.append('../')#parent directory
+from tex2maxima_parser import tex2maxima2tex, mylatexstyle
+from tex2maxima_parser import MULT_SP, MULT_NSP, MULT_CDOT, MULT_TIMES
+
+outputdir=os.path.dirname(__file__)#pythontex-files-example21
+resultfile=outputdir+'/result.tex'
+texexpr_command_list=[] 
+index=0	
+\end{pycode}
+
+
+\usepackage{amsmath,amssymb}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\large\bf ply\_tex2maxima example~25~~~No.\thepage}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0.0pt}
+
+\renewcommand{\labelenumi}{(\arabic{enumi})~~}
+\def\myvspace{\vspace{7mm}}
+
+\usepackage{arrayjob}
+\newarray\resultlist
+
+\begin{document} 
+	
+	\py{'\input{'+resultfile+'}'}%\input{pythontex-files-example3/result.tex} 
+	%-->\readarray{resultlist}{8&65536&...+\frac{a^2}{4}&}
+	\begin{enumerate}	
+				
+		\item \pyc{texexpr=r'\int_{0}^{1}{\int_{y}^{2y}{(x^2+y^2+1) \,dx} \,dy}'}
+			\pyc{index+=1}		
+			\pyc{texexpr_command_list.append([texexpr,MULT_NSP,'ratsimp'])}
+			\py{'$\displaystyle {:s}=$'.format(texexpr)}
+			$\py{r'\displaystyle \resultlist('+str(index)+')'}$\par\myvspace
+			
+		\item \pyc{texexpr=r'\int_{-1}^{1}{\int_{0}^{\sqrt{1-x^2}}{x^2y \,dy} \,dx}'}
+			\pyc{index+=1}		
+			\pyc{texexpr_command_list.append([texexpr,MULT_NSP,'ratsimp'])}
+			\py{'$\displaystyle {:s}=$'.format(texexpr)}
+			$\py{r'\displaystyle \resultlist('+str(index)+')'}$\par\myvspace
+			
+		\item \pyc{texexpr=r'\left(\dfrac{d}{dx}\right)^{4}{x^5}'}
+			\pyc{index+=1}		
+			\pyc{texexpr_command_list.append([texexpr,MULT_NSP,'ratsimp'])}
+			\py{'$\displaystyle {:s}=$'.format(texexpr)}
+			$\py{r'\displaystyle \resultlist('+str(index)+')'}$\par\myvspace
+			
+		\item \pyc{texexpr=r'\dfrac{d^{\,2}}{dx^{2}}{\,x^5}'}
+			\pyc{index+=1}		
+			\pyc{texexpr_command_list.append([texexpr,MULT_NSP,'ratsimp'])}
+			\py{'$\displaystyle {:s}=$'.format(texexpr)}
+			$\py{r'\displaystyle \resultlist('+str(index)+')'}$\par\myvspace
+			
+		\item \pyc{texexpr=r'\dfrac{d^{\,3}}{d\theta^{3}}{\,(\theta\cos {\theta})}'}
+			\pyc{index+=1}		
+			\pyc{texexpr_command_list.append([texexpr,MULT_NSP,'ratsimp'])}
+			\py{'$\displaystyle {:s}=$'.format(texexpr)}
+			$\py{r'\displaystyle \resultlist('+str(index)+')'}$\par\myvspace
+			
+		\item \pyc{texexpr=r'\dfrac{d}{dx}{\,f(x)}+2f(x)=3\ee^{4x}'}
+			\pyc{index+=1}		
+			\pyc{texexpr_command_list.append([texexpr,MULT_NSP,'ode2','f(x)','x'])}
+			\py{'${:s}$'.format(mylatexstyle(texexpr))}
+			\hfill solution (ode2):~~$\py{r'\displaystyle \resultlist('+str(index)+')'}$\par\par
+			
+			\pyc{texexpr=r'\dfrac{d}{dx}{\,f(x)}+2f(x)=3\ee^{4x}'}
+			\pyc{index+=1}		
+			\pyc{texexpr_command_list.append([texexpr,MULT_NSP,'desolve','f(x)'])}
+			%\py{'${:s}$'.format(mylatexstyle(texexpr))}
+			\hfill solution (desolve):~~$\py{r'\displaystyle \resultlist('+str(index)+')'}$\par\myvspace
+			
+		\item \pyc{texexpr=r'\dfrac{d^{\,2}}{dx^{2}}{\,f(x)}-2\dfrac{d}{dx}{\,f(x)}+f(x)=\sin{x}'}
+			\pyc{index+=1}		
+			\pyc{texexpr_command_list.append([texexpr,MULT_NSP,'ode2','f(x)','x'])}
+			\py{'${:s}$'.format(mylatexstyle(texexpr))}
+			\hfill solution (ode2):~~$\py{r'\displaystyle \resultlist('+str(index)+')'}$\par\par
+			
+			\pyc{texexpr=r'\dfrac{d^{\,2}}{dx^{2}}{\,f(x)}-2\dfrac{d}{dx}{\,f(x)}+f(x)=\sin{x}'}
+			\pyc{index+=1}		
+			\pyc{texexpr_command_list.append([texexpr,MULT_NSP,'desolve','f(x)'])}
+			%\py{'${:s}$'.format(mylatexstyle(texexpr))}\par
+			\par \hfill solution (desolve):~~$\py{r'\displaystyle \resultlist('+str(index)+')'}$\par\myvspace
+			
+		\item \pyc{texexpr=r'\Gamma(5)'}
+			\pyc{index+=1}		
+			\pyc{texexpr_command_list.append([texexpr,MULT_NSP,'ratsimp'])}
+			\py{'$\displaystyle {:s}=$'.format(texexpr)}
+			$\py{r'\displaystyle \resultlist('+str(index)+')'}$\par\myvspace
+			
+		\item \pyc{texexpr=r'\Gamma\left(-\dfrac{3}{\,2\,}\right)'}
+			\pyc{index+=1}		
+			\pyc{texexpr_command_list.append([texexpr,MULT_NSP,'ratsimp'])}
+			\py{'$\displaystyle {:s}=$'.format(texexpr)}
+			$\py{r'\displaystyle \resultlist('+str(index)+')'}$\par\myvspace
+			
+		\item \pyc{texexpr=r'\dfrac{\Gamma(11)}{\Gamma(10)}'}
+			\pyc{index+=1}		
+			\pyc{texexpr_command_list.append([texexpr,MULT_NSP,'ratsimp'])}
+			\py{'$\displaystyle {:s}=$'.format(texexpr)}
+			$\py{r'\displaystyle \resultlist('+str(index)+')'}$\par\myvspace
+			
+		\item \pyc{texexpr=r'\zeta(2)'}
+			\pyc{index+=1}		
+			\pyc{texexpr_command_list.append([texexpr,MULT_NSP,'ratsimp'])}
+			\py{'$\displaystyle {:s}=$'.format(texexpr)}
+			$\py{r'\displaystyle \resultlist('+str(index)+')'}$\par\myvspace
+			
+		\item \pyc{texexpr=r'\zeta(10)'}
+			\pyc{index+=1}		
+			\pyc{texexpr_command_list.append([texexpr,MULT_NSP,'ratsimp'])}
+			\py{'$\displaystyle {:s}=$'.format(texexpr)}
+			$\py{r'\displaystyle \resultlist('+str(index)+')'}$\par\myvspace		
+			
+	\end{enumerate}
+
+\begin{pycode}
+result_str=tex2maxima2tex(texexpr_command_list, outputdir+'/')
+try:
+	f = open(resultfile, 'w')
+	f.write(r'\readarray{resultlist}{'+result_str+'}')
+	f.close()
+except:
+	print('ERROR!')	
+\end{pycode}	
+	
+\end{document}
