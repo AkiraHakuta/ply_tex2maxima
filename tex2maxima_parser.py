@@ -1,4 +1,4 @@
-# tex2maxima_parser.py   Author: Akira Hakuta, Date: 2017/07/13
+# tex2maxima_parser.py   Author: Akira Hakuta, Date: 2017/07/19
 # python.exe tex2maxima_parser.py
 
 from ply import yacc
@@ -16,7 +16,7 @@ MULT_NSP=1
 MULT_CDOT=2
 MULT_TIMES=3
 
-# variable : a,b,...,z,A,...,Z,\\alpha,\\beta,\\gamma,\\theta,\\omega
+# variable : a,b,...,z, A,...,Z,\\alpha,\\beta,\\gamma,\\theta,\\omega
 # constant : pi --> \\ppi, imaginary unit --> \\ii, napier constant --> \\ee
 
 precedence = (
@@ -35,11 +35,13 @@ def p_statement(p):
     'statement : expr'
     p[0] = p[1]
 
+
 # expr : expr^expr
 def p_expr_exponent(p):
     'expr : expr EXPONENT expr'
     #p[0]  p[1] p[2]   p[3]
     p[0] = '({})^({})'.format(p[1], p[3])
+ 
     
 # expr : expr!
 def p_expr_factorial(p):
@@ -51,6 +53,7 @@ def p_expr_factorial(p):
 def p_expr_mult(p):
     'expr : expr MULT expr'
     p[0] = '{}*{}'.format(p[1],p[3])
+
     
 # expr : expr expr    
 def p_expr_exprexpr(p):
@@ -73,72 +76,86 @@ def p_expr_plus(p):
 def p_expr_minus(p):
     'expr : expr MINUS expr'
     p[0] = '{}-{}'.format(p[1], p[3])
+ 
     
 # expr : {expr}
 def p_expr_brace(p):
     'expr : LBRACE expr RBRACE'
     p[0] = '({})'.format(p[2])
 
+
 # expr : (expr)
 def p_expr_paren(p):
     'expr : LPAREN expr RPAREN'
     p[0] = '({})'.format(p[2])
 
+
 # expr : [a-zA-Z]
 def p_expr_symbol(p):
     'expr : ALPHABET'
     p[0] = p[1]
+ 
     
 # expr : %alpha|%beta|%Gamma|%theta|%omega
 def p_expr_greek_ch(p):
     'expr : GREEK_CH'
     p[0] = p[1]
 
+
 # expr : +expr
 def p_expr_plus_expr(p):
     'expr : PLUS expr %prec UPLUS' # override precedence of PLUS by `%prec UPLUS`
     p[0] = p[2]
 
+
 # expr : -expr
 def p_expr_minus_expr(p):
     'expr : MINUS expr %prec UMINUS' # override precedence of MINUS by `%prec UMINUS`
     p[0] = '(-1)*({})'.format(p[2])
+
     
 # expr : pi
 def p_expr_pi(p):
     'expr : PI'
     p[0] = '%pi'
+
  
 # expr : imaginary_unit    
 def p_expr_imaginary_unit(p):
     'expr : IMAGINARY_UNIT'
     p[0] = '%i'
 
+
 # expr : napier_constant
 def p_expr_napier_constant(p):
     'expr : NAPIER_CONSTANT'
     p[0] = '%e'   
+
 
 # expr : infty
 def p_expr_infty(p):
     'expr : INFTY'
     p[0] = 'inf'
 
+
 # expr :  \d+  
 def p_expr_integer(p):
     'expr : NN_INTEGER'
     p[0] = p[1]
+ 
  
 # expr :  \d*\.\d+ 
 def p_expr_float(p):
     'expr : NN_FLOAT'
     #p[0] = 'nsimplify(Rational({}))'.format(p[1])
     p[0] = 'ratsimp({})'.format(p[1])
+ 
         
 # expr : \\sqrt{expr}
 def p_expr_sqrt1(p):
     'expr : F_SQRT LBRACE expr RBRACE'
     p[0] = 'sqrt({})'.format(p[3])    
+
     
 # expr : \\sqrt[expr]{expr}
 def p_expr_sqrt2(p):
@@ -146,72 +163,101 @@ def p_expr_sqrt2(p):
     #p[0] = '(root(({}),({})))'.format(p[6],p[3])
     p[0] = '(({})^(({})^(-1)))'.format(p[6],p[3])
 
+
 # expr : \\frac{expr}{expr}
 def p_expr_frac(p):
     'expr : F_FRAC LBRACE expr RBRACE LBRACE expr RBRACE'
     p[0] = '({}) * ({})^(-1)'.format(p[3], p[6])   
 
+
 # expr : \\sin{expr} | \\cos{expr} | \\tan{expr} 
 def p_expr_f_trigonometric(p):
     'expr : F_TRIG LBRACE expr RBRACE'
     p[0] = '{}({})'.format(p[1][1:], p[3])
+ 
      
 # expr : \\log{expr}
 def p_expr_f_log(p):
     'expr : F_LOG LBRACE expr RBRACE'
     p[0] = 'log({})'.format(p[3])
 
+
 # expr : \\sin^{expr}{expr} | \\cos^{expr}{expr} | \\tan^{expr}{expr} 
 def p_expr_f_trigonometric_car(p):
     'expr : F_TRIG_CAR LBRACE expr RBRACE LBRACE expr RBRACE'
     p[0] = '({}({}))^({})'.format(p[1][1:4],p[6],p[3])  
 
+
 # expr : \\log_{expr}{expr}
 def p_expr_f_log_ub(p):
     'expr : F_LOG_UB LBRACE expr RBRACE LBRACE expr RBRACE '
     p[0] = 'log({})*(log({})^(-1))'.format(p[6],p[3])
+ 
+ 
+# expr : \\Gamma(expr)
+def p_expr_f_gamma(p):
+    'expr : F_GAMMA expr RPAREN'
+    p[0] = 'gamma({})'.format(p[2])
+ 
     
+# expr : \\zeta(expr)
+def p_expr_f_zeta(p):
+    'expr : F_ZETA expr RPAREN'
+    p[0] = 'zeta({})'.format(p[2])
+ 
+        
 # expr : \\sum_{k=expr}^{expr}{expr}
 def p_expr_sum(p):
     'expr : F_SUM  UB LBRACE ALPHABET EQUAL expr  RBRACE EXPONENT LBRACE expr RBRACE LBRACE expr RBRACE'
     p[0] = 'nusum({},{},{},{})'.format(p[13],p[4],p[6],p[10])
  
-# expr : \\frac{d}{dx} {expr}
+ 
+# expr : \\frac{d}{dx} {expr} 
 def p_expr_diff(p):
-    'expr : DIFF LBRACE DX RBRACE LBRACE expr RBRACE'
-    x=p[3][1:]    
-    if x=='%alpha' or x=='%beta' or x=='%Gamma' or x=='%theta' or x=='%omega':
-        p[0] = 'diff({},{},1)'.format(p[6], p[3][1:])
-    else:
-        p[0] = 'diff({},{},1)'.format(p[6], p[3][1]) 
+    '''expr : DIFF  RBRACE LBRACE DGREEK_CH RBRACE LBRACE expr RBRACE
+            | DIFF  RBRACE LBRACE DX        RBRACE LBRACE expr RBRACE'''
+    p[0] = 'diff({},{},1)'.format(p[7], p[4][1:]) 
     
+        
+# expr : (\\frac{d}{dx})^{n} {expr}
+def p_expr_diff_n1(p):
+    '''expr :  LPAREN DIFF RBRACE LBRACE DGREEK_CH RBRACE RPAREN EXPONENT LBRACE expr RBRACE LBRACE expr RBRACE
+            |  LPAREN DIFF RBRACE LBRACE DX        RBRACE RPAREN EXPONENT LBRACE expr RBRACE LBRACE expr RBRACE'''
+    p[0] = 'diff({},{},{})'.format(p[13], p[5][1:], p[10])
+
+
+# expr : \\frac{d^{n}}{dx^{n}} {expr}
+def p_expr_diff_n2(p):
+    '''expr : DIFF EXPONENT LBRACE expr RBRACE RBRACE LBRACE DGREEK_CH  EXPONENT LBRACE expr RBRACE RBRACE LBRACE expr RBRACE
+            | DIFF EXPONENT LBRACE expr RBRACE RBRACE LBRACE DX         EXPONENT LBRACE expr RBRACE RBRACE LBRACE expr RBRACE'''
+    p[0] = 'diff({},{},{})'.format(p[15], p[8][1:], p[4])
+
+
 # expr : \\int{expr dx}
 def p_expr_int(p):
-    'expr : F_INT LBRACE expr DX RBRACE'
-    x=p[4][1:]
-    if x=='%alpha' or x=='%beta' or x=='%Gamma' or x=='%theta' or x=='%omega':
-        p[0] = 'integrate({},{})'.format(p[3],p[4][1:])
-    else:
-        p[0] = 'integrate({},{})'.format(p[3],p[4][1])    
+    '''expr : F_INT LBRACE expr DGREEK_CH RBRACE
+            | F_INT LBRACE expr DX        RBRACE'''
+    p[0] = 'integrate({},{})'.format(p[3],p[4][1:])
+
 
 # expr : \\int^{expr}_{expr}{expr dx}
 def p_expr_definite_int(p):
-    'expr : F_INT UB LBRACE expr RBRACE EXPONENT LBRACE expr RBRACE LBRACE expr DX RBRACE'
-    x=p[8][1:]
-    if x=='%alpha' or x=='%beta' or x=='%Gamma' or x=='%theta' or x=='%omega':
-        p[0] = 'integrate({},{},{},{})'.format(p[11],p[12][1:],p[4],p[8])
-    else:
-        p[0] = 'integrate({},{},{},{})'.format(p[11],p[12][1],p[4],p[8])
+    '''expr : F_INT UB LBRACE expr RBRACE EXPONENT LBRACE expr RBRACE LBRACE expr DGREEK_CH RBRACE
+            | F_INT UB LBRACE expr RBRACE EXPONENT LBRACE expr RBRACE LBRACE expr DX        RBRACE'''
+    p[0] = 'integrate({},{},{},{})'.format(p[11],p[12][1:],p[4],p[8])
+ 
     
 # expr : \\lim_{expr->expr}{expr}
 def p_expr_lim(p):
     'expr : LIM UB LBRACE expr TO expr RBRACE LBRACE expr RBRACE'
     p[0] = 'limit({}, {}, {})'.format(p[9],p[4],p[6])
-    
+
+
 # expr : a_{expr}
 def p_expr_seq_term(p):
     'expr : F_SEQ_TERM LBRACE expr RBRACE'
     p[0] = 'a({})'.format(p[3]) 
+
           
 # expr : _{expr}\\C_{expr} |  _{expr}\\P_{expr}
 def p_expr_combi_or_permutation(p):
@@ -220,11 +266,18 @@ def p_expr_combi_or_permutation(p):
         p[0] = 'combination({},{})'.format(p[3],p[8])
     elif p[5] == '\\P':
         p[0] = 'permutation({},{})'.format(p[3],p[8])
+ 
         
 # expr : \\left| expr \\right|
 def p_expr_abs(p):
     'expr : LPIPE expr RPIPE'
     p[0] = 'abs({})'.format(p[2])        
+
+
+# expr : f(expr)
+def p_expr_function(p):
+    'expr : FUNCTION expr RPAREN'
+    p[0] = 'f({})'.format(p[2])         
        
 
 
@@ -232,6 +285,7 @@ def p_expr_abs(p):
 def p_statement_equal_expr(p):
     'statement : expr EQUAL expr'
     p[0] = '({})=({})'.format(p[1],p[3])
+
   
 # statement : expr > expr | expr < expr | expr >= expr | expr <= expr |
 def p_statement_relation_expr(p):
@@ -244,11 +298,13 @@ def p_statement_relation_expr(p):
         p[0] = '{}>={}'.format(p[1],p[3])
     elif p[2] == '\\leqq':
         p[0] = '{}<={}'.format(p[1],p[3])   
+ 
         
 # statement : statement , statement    
 def p_statement_statemant_comma_statement(p):
     'statement : statement COMMA statement'
     p[0] = '{},{}'.format(p[1],p[3])
+
 
 
 # Rule for error handling
@@ -271,7 +327,7 @@ logging.basicConfig(
 
 def tex2maxima(texexpr):
     replace_list=[['~',''],['\\,',''],['\\:',''],['\\;',''],['\\!',''], ['\\{','('],['\\}', ')'],['\\left(','('],['\\right)', ')'],  
-        ['\\alpha','%alpha'],['\\beta','%beta'],['\\gamma','%Gamma'],['\\omega','%omega'],['\\theta','%theta']]
+        ['\\alpha','%alpha'],['\\beta','%beta'],['\\gamma','%gamma'],['\\omega','%omega'],['\\theta','%theta']]
     for le in replace_list:
         texexpr=texexpr.replace(le[0],le[1])     
     lexer.input(texexpr)
@@ -298,7 +354,7 @@ def run_maxima(batch_dir):
     maxima_ret = re.sub(r'\s+false(\\r)?(\\n)\(%i\d+\)\s','',maxima_ret)
     maxima_ret = re.sub(r'(\\r)?(\\n)\s*','',maxima_ret)
     #print(maxima_ret) 
-    replace_list= [['\\\\','\\'],['\\it \\%alpha','\\alpha'],['\\it \\%beta','\\beta'],['\\it \\%Gamma','\\gamma'],['\\it \\%theta','\\theta'],['\\it \\%omega','\\omega']
+    replace_list= [['\\\\','\\'],['\\it \\%alpha','\\alpha'],['\\it \\%beta','\\beta'],['\\it \\%gamma','\\gamma'],['\\it \\%theta','\\theta'],['\\it \\%omega','\\omega']
         ,['\\lor','~or~']]
     for el in replace_list:
         maxima_ret = maxima_ret.replace(el[0],el[1]) 
@@ -353,6 +409,10 @@ def tex2maxima2tex(texexpr_command_list, batch_dir, test=0):
             maxima_command += 'tex(logcontract({:s}))'.format(maximaexpr)+';\r'
         elif command == 'trigsimp':
             maxima_command += 'tex(trigsimp({:s}))'.format(maximaexpr)+';\r'
+        elif command == 'ode2':
+            maxima_command += 'tex(ratsimp(ode2({:s},{:s},{:s})))'.format(maximaexpr,tex2maxima(el[3]),tex2maxima(el[4]))+';\r'
+        elif command == 'desolve':
+            maxima_command += 'tex(ratsimp(desolve({:s},{:s})))'.format(maximaexpr,tex2maxima(el[3]))+';\r'
                            
     maxima_command += 'end;\r'
     maxima_command += '\r'
@@ -408,6 +468,13 @@ if __name__ == '__main__':
     ['x^2-3x-4 \\leqq 0',MULT_CDOT,'fourier_elim','x'],
     ['\\sqrt{8-2\\sqrt{15}}',MULT_NSP, 'sqrtdenest'],
     ['\\sqrt{x^2}',MULT_NSP, 'ratsimp'],
+    ['(\\frac{d}{dx})^{3}{x^5}',MULT_NSP,'ratsimp'],
+    ['\\frac{d^{2}}{dx^{2}}{x^5}',MULT_NSP,'ratsimp'],
+    ['\\dfrac{d^{2}}{dx^{2}}{f(x)}=-f(x)',MULT_CDOT,'ode2','f(x)','x'],    
+    [r'\int_{0}^{1}{\int_{1-y}^{1}{xy^2 \,dx} \,dy}',MULT_NSP,'ratsimp'],
+    ['\\dfrac{d}{dx}{\,f(x)}+2f(x)=3\ee^{4x}',MULT_CDOT,'desolve','f(x)'],
+    ['\\Gamma(6)',MULT_NSP,'ratsimp'],
+    ['\\zeta(2)',MULT_NSP,'ratsimp'],
     ]
 
     test = 1
