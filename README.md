@@ -75,7 +75,7 @@ MULT_TIMES=3
 ['\\log{\\ee^3}', 1, 'ratsimp'] --> tex(ratsimp(log(%e^3))) --> 3
 ['\\frac{d}{dx}{\\log{x}}', 1, 'ratsimp'] --> tex(ratsimp(diff(log(x),x,1))) --> \frac{1}{x}
 ['\\int{\\cos^{2}{\\theta} d\\theta}', 3, 'ratsimp'] --> tex(ratsimp(integrate(cos(%theta)^2,%theta))) --> \frac{\sin \left(2\times {\theta}\right)+2\times {\theta}}{4}
-['\\dfrac{d}{dx}{\\,f(x)}=-f(x)', 2, 'ode2', 'f(x)', 'x'] --> tex(ratsimp(ode2(diff(f(x),x,1) = (-1)*f(x),f(x),x))) --> f\left(x\right)={\it \%c}\cdot e^ {- x }
+['\\frac{d}{dx}{f(x)}=f(x)', 2, 'ode2', 'f(x)', 'x'] --> tex(ratsimp(ode2(diff(f(x),x,1) = f(x),f(x),x))) --> f\left(x\right)={\it \%c}\cdot e^{x}
 ['\\Gamma(6)', 1, 'ratsimp'] --> tex(ratsimp(gamma(6))) --> 120
 ['\\zeta(2)', 1, 'ratsimp'] --> tex(ratsimp(zeta(2))) --> \frac{\pi^2}{6}
 ```
