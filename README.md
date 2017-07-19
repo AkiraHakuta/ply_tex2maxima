@@ -2,7 +2,7 @@
 
 ply_tex2maxima parses LaTeX math expressions and converts it into the equivalent Maxima form by using PLY.  
 
-Author:Akira Hakuta,  Date: 2017/07/13       
+Author:Akira Hakuta,  Date: 2017/07/19       
 
 ## Installation (windows)
 
@@ -48,6 +48,10 @@ a_{n}
 \\{a-2(b-c)\\}^2  
 _{10}\\P_{3}  
 _{10}\\C_{3}  
+(\\frac{d}{dx})^{3}{x^5}  
+\\frac{d^{3}}{dx^{3}}{x^5}  
+\\Gamma(5)  
+\\zeta(10)  
 
 pdflatex.exe -synctex=1 -interaction=nonstopmode example21.tex  
 pythontex.exe example21.tex  
