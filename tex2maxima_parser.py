@@ -470,7 +470,7 @@ if __name__ == '__main__':
     ['\\sqrt{x^2}',MULT_NSP, 'ratsimp'],
     ['(\\frac{d}{dx})^{3}{x^5}',MULT_NSP,'ratsimp'],
     ['\\frac{d^{2}}{dx^{2}}{x^5}',MULT_NSP,'ratsimp'],
-    [r'\int_{0}^{1}{\int_{1-y}^{1}{xy^2 \,dx} \,dy}',MULT_NSP,'ratsimp'],
+    ['\\int_{0}^{1}{\int_{1-y}^{1}{xy^2 dx} dy}',MULT_NSP,'ratsimp'],
     ['\\frac{d^{2}}{dx^{2}}{f(x)}=-f(x)',MULT_CDOT,'desolve','f(x)'],     
     ['\\frac{d}{dx}{f(x)}=f(x)',MULT_CDOT,'ode2','f(x)','x'],
     ['\\Gamma(6)',MULT_NSP,'ratsimp'],
