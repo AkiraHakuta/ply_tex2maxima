@@ -52,6 +52,7 @@ _{10}\\C_{3}
 \\frac{d^{3}}{dx^{3}}{x^5}  
 \\Gamma(5)  
 \\zeta(10)  
+f(x) function, not f*(x)  
 
 pdflatex.exe -synctex=1 -interaction=nonstopmode example21.tex  
 pythontex.exe example21.tex  
