@@ -287,6 +287,11 @@ ply_tex2maxima-master
 Pythonは .pth の付いたファイルを読み込んで path を設定します。絶対path でもOK。    
 
 #### 修正情報
+2017/05/23 
+```
+start
+```
+
 2017/06/11 
 
 ```
