@@ -2,7 +2,7 @@
 
 ply_tex2maxima parses LaTeX math expressions and converts it into the equivalent Maxima form by using PLY.  
 
-Author:Akira Hakuta,  Date: 2017/07/19       
+Author:Akira Hakuta,  Date: 2017/08/06       
 
 ## Installation (windows)
 
@@ -101,8 +101,8 @@ Python3 の好きなバージョン、32bit、64bitを選び、インスツー�
 pip install pygments  
 pip install ply  
 と打ち込む。Successfully installed ...　と表示されればOK!    
-\Python34\Lib\site-packagesのなかにパッケージのフォルダができる。  
-当方は Python 3.4.4 で動作を確認しています。  
+\Python36\Lib\site-packagesのなかにパッケージのフォルダができる。  
+当方は Python 3.6.2 で動作を確認しています。  
 
 #### Maxima  
 <http://maxima.sourceforge.net> (5.39.0-Windows)  
@@ -280,8 +280,8 @@ batch file に処理するコマンドをまとめ、1回で処理している�
 他のモジュールと同様に、    
 from tex2maxima2_parser import tex2maxima2tex, mylatexstyle   
 だけで import できるようにするには、    
-まず、ダウンロードしたフォルダー ply_tex2maxima-master を、Python35\Lib\site-packages にコピーまたは移動し,   
-Python34\Lib\site-packages に、例えば、  
+まず、ダウンロードしたフォルダー ply_tex2maxima-master を、Python36\Lib\site-packages にコピーまたは移動し,   
+Python36\Lib\site-packages に、例えば、  
 ply_tex2maxima-master  
 の1行だけのファイル ply_tex2maxima-master.pth を作ります。    
 Pythonは .pth の付いたファイルを読み込んで path を設定します。絶対path でもOK。    
@@ -307,3 +307,9 @@ Pythonは .pth の付いたファイルを読み込んで path を設定しま�
 高次微分、ガンマ関数、ゼータ関数 を追加 
 微分方程式の使用例を追加
 ```
+2017/08/06
+
+```
+Python 3.6.2 で動作確認
+```
+
