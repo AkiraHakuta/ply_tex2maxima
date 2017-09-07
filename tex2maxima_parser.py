@@ -1,4 +1,4 @@
-# tex2maxima_parser.py   Author: Akira Hakuta, Date: 2017/07/19
+# tex2maxima_parser.py   Author: Akira Hakuta, Date: 2017/09/07
 # python.exe tex2maxima_parser.py
 
 from ply import yacc
@@ -23,7 +23,7 @@ precedence = (
     ('left', 'PLUS', 'MINUS'),
     ('left', 'MULT', 'DIV'),
     ('right', 'UPLUS', 'UMINUS'),  
-    ('right', 'EXPONENT'),    
+    ('right', 'EXPONENT','FACTORIAL'),    
     )
 
 
